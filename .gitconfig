@@ -1,0 +1,23 @@
+[user]
+    name = Hiroki Honda
+    email = cside.story@gmail.com
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[core]
+	editor = vim
+	excludesfile = /Users/Cside/.gitignore
+[alias]
+	st = status
+	co = checkout
+	ci = commit -v
+	di = diff
+	br = branch
+	puhs = push
+	psuh = push
+	pus = push
+	puh = push
+	pl = !git pull && git submodule update --init
+

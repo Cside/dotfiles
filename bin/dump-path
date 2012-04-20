@@ -1,0 +1,14 @@
+#!/usr/bin/env perl
+use 5.10.0;
+use strict;
+use warnings;
+use Data::Dump qw(dump);
+use List::MoreUtils qw(uniq);
+
+my $path = shift || exit;
+if ($path =~ s/^perl://) {
+    say dump eval($path);
+} else {
+    say $_ for map {chomp $_; $_} uniq sort split /:/, $path;
+}
+__END__

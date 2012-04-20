@@ -1,0 +1,10 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Class::Inspector;
+
+my $target = shift || exit;
+my $module = shift;
+eval "use " . ($module || $target);
+
+print $_, "\n" for @{Class::Inspector->methods($target, "public")||[]}

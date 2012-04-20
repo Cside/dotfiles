@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/Cside/Documents/Titanium Studio Workspace/ContinuousPlayback/Resources'
+let g:netrw_dirhist_2='/Users/Cside/work'
+let g:netrw_dirhist_3='/Users/Cside/Documents/Titanium Studio Workspace/ContinuousPlayback/Resources'
+let g:netrw_dirhist_4='/Users/Cside/work/data-validator/t'
+let g:netrw_dirhist_5='/Users/Cside/work/data-validator'

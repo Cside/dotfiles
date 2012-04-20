@@ -1,0 +1,5 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+@ARGV or exit;
+system('ack', @ARGV, $_) for grep { $_ ne '.' } @INC;
