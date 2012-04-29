@@ -224,6 +224,10 @@ COMMANDS 					*unite-commands*
 		action immediately. If candidate is empty, it doesn't open
 		unite buffer. This option also works in narrowing mode.
 
+						*unite-options-no-empty*
+		-no-empty
+		If candidate is empty, it doesn't open unite buffer.
+
 						*unite-options-auto-preview*
 		-auto-preview
 		When you selected candidate, it runs "preview" action
@@ -283,16 +287,23 @@ COMMANDS 					*unite-commands*
 						*unite-options-update-time*
 		-update-time={new-update-time}
 		Change 'updatetime' option. If this option is ommit,
-		|g:unite_update_time| is used.
+		|g:unite_update_time| is used. This option is useful for
+		animation source.
 
 						*unite-options-cursor-line-highlight*
 		-cursor-line-high-light={highlight-name}
 		Change cursor line highlight. If this option is ommit,
 		|g:unite_cursor_line_highlight| is used.
 
+						*unite-options-no-cursor-line*
+		-no-cursor-line
+		Disable cursor line highlight. This option is useful for
+		animation source.
+
 						*unite-options-hide-source-names*
 		-hide-source-names
 		Hide source names.
+		Note: This option hide unite status line.
 
 :UniteWithCurrentDir [{options}] {sources}	*:UniteWithCurrentDir*
 		Equivalent to |:Unite| except that the initial narrowing text
@@ -942,6 +953,7 @@ x		In case when you selected a candidate, runs
 Insert mode mappings.
 {lhs}		{rhs}
 --------	-----------------------------
+<ESC>		|i_<Plug>(unite_insert_leave)|
 <Tab>		|i_<Plug>(unite_choose_action)|
 <C-n>		|i_<Plug>(unite_select_next_line)|
 <Down>		|i_<Plug>(unite_select_next_line)|
@@ -1634,6 +1646,11 @@ matcher_migemo	For Japanese migemo filter.
 		call unite#custom_filters('line',
 		\ ['matcher_migemo', 'sorter_default', 'converter_default'])
 <
+						*unite-filter-matcher_hide_hidden_files*
+matcher_hide_hidden_files
+		Hide hidden files filter. If you input contains ".", hidden
+		files will be appeared.
+
 						*unite-filter-sorter_default*
 sorter_default	Todo
 		In default, use sorter_default sorter.
@@ -1822,6 +1839,9 @@ session						*unite-action-session*
 	delete		Delete sessions
 	open		Open session files
 	rename		Rename session name
+
+mapping						*unite-action-mapping*
+	help		Read documentation
 
 						*unite-default-action*
 Default actions
@@ -2184,6 +2204,80 @@ https://github.com/Shougo/unite.vim/wiki/unite-plugins
 
 ==============================================================================
 CHANGELOG					*unite-changelog*
+
+2012-04-24
+- Updated vital.
+
+2012-04-22
+- Improved unite-grep behavior.
+- Improved redraw candidates.
+- Fixed file_rec/async source.
+- Fixed <ESC> mapping.
+- Fixed updatetime restore problem.
+
+2012-04-21
+- Fixed kind problem.
+
+2012-04-17
+- Improved grep source behavior.
+- Added -no-cursor-line option.
+- Improved jump_list kind.
+
+2012-04-16
+- Improved jump_list preview action.
+- Fixed -auto-preview behavior.
+
+2012-04-13
+- Improved unite#mappings#do_action().
+
+2012-04-11
+- Fixed InsertLeave problem.
+
+2012-04-10
+- Fixed unite-action error.
+- Fixed unite buffer behavior.
+- Improved sudo check.
+
+2012-04-05
+- Fixed for vimfiler source.
+- Improved matcher_hidden_files filter.
+- Improved mapping source.
+
+2012-03-31
+- Fixed for cmdwin.
+- Improved variables initialization.
+- Fixed <Plug>(unite_insert_head) mapping.
+
+2012-03-26
+- Improved cursor move behavior.
+- Changed -hide-source-names option behavior.
+- Improved vimfiler initialization.
+- Fixed directory_mru syntax pattern.
+- Fixed documentation.
+
+2012-03-25
+- Fixed restore updatetime.
+
+2012-03-23
+- Fixed file_mru autocmd event.
+
+2012-03-20
+- Fixed expand().
+
+2012-03-19
+- Fixed quick match bug.
+
+2012-03-18
+- Added -no-empty option.
+
+2012-03-17
+- Improved file_rec filtering behavior.
+- Added matcher_hide_hidden_files filter.
+- Added on_pre_filter hook.
+- Fixed highlight problem.
+
+2012-03-16
+- Fixed expand error.
 
 2012-03-15
 - Fixed grep source.

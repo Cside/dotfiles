@@ -7,7 +7,11 @@ filetype plugin indent on
 set rtp+=~/.vim/vundle/
 call vundle#rc('~/.vim/bundle')
 
+Bundle 'Cside/unite-script'
+Bundle 'taglist.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc'
+Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tyru/current-func-info.vim'
@@ -28,11 +32,6 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tsaleh/vim-align'
 Bundle 'skammer/vim-css-color'
-" Bundle 'cschlueter/vim-wombat'
-" Bundle 'tyru/open-browser.vim'
-" Bundle 'tpope/vim-haml'
-" Bundle 'vim-ruby/vim-ruby'
-" Bundle 'mattn/benchvimrc-vim'
 
 " for alc
 nnoremap <Leader>p <Esc>:Perldoc<Space>
@@ -115,14 +114,51 @@ smap       <C-k> <Plug>(neocomplcache_snippets_expand)
 " -------------------------------------------------------------------------
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_time_format = ""
-nmap <C-l> :Unite -buffer-name=files buffer_tab file_mru file<CR>
+nmap <C-l> :Unite -buffer-name=files buffer_tab file_mru file file_rec file/new<CR>
+nmap <C-k> :Unite -buffer-name=files buffer_tab               file_rec file/new<CR>
 nmap <C-o> :Unite outline<CR>
 " less delay
-let g:unite_update_time = 80
+let g:unite_update_time = 10
 
 " Unite バッファで <Esc>x2 で終了
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+nnoremap <silent> <Space>uu :Unite file file/new<CR>
+nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
+nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>
+nnoremap <silent> <Space>inc :Unite script:perl:/Users/Cside/bin/unite-source-inc.pl<CR>
+
+nnoremap <silent> <Space>uc :UniteWithBufferDir -buffer-name=files file file/new<CR>
+nnoremap <silent> <Space>ut :Unite tag<CR>
+nnoremap <silent> <Space>uy :Unite register<CR>
+nnoremap <silent> <Space>ua :UniteBookmarkAdd<CR>
+nnoremap <silent> <Space>ub :Unite bookmark<CR>
+nnoremap <silent> <Space>uo :Unite outline<CR>
+nnoremap <silent> <Space>up :Unite -start-insert ref/perldoc<CR>
+nnoremap <silent> <Space>um :Unite -start-insert ref/man<CR>
+nnoremap <silent> <Space>ui :Unite -buffer-name=files file_include<CR>
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
+nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
+inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
+
+call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
+call unite#set_substitute_pattern('file', '/\ze[^*]', '/*', 10)
+
+call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
+call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
+call unite#set_substitute_pattern('file', '^\\', '~/*')
+
+call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
+
+call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
+call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+endfunction"}}}
 
 " ===========================
 "   基本的な設定
@@ -216,8 +252,8 @@ autocmd BufNewFile,BufRead *.sql    set filetype=mysql
 autocmd BufNewFile,BufRead *.tt     set filetype=html
 
 "ステータスライン
-set laststatus=2
-let &statusline='[%F] %{GetEFstatus()} %{fugitive#statusline()}%=%{cfi#get_func_name()} @ %l %p%%'
+let &statusline='[#%n:%t%m] %y%{GetEFstatus()} %{fugitive#statusline()}%=%{cfi#get_func_name()} @ %l-%c %p%%   '
+
 
 function! GetEFstatus()
   let str = ''

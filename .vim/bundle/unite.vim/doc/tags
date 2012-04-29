@@ -157,6 +157,7 @@ unite-action-directory_mru	unite.txt	/*unite-action-directory_mru*
 unite-action-file	unite.txt	/*unite-action-file*
 unite-action-file_mru	unite.txt	/*unite-action-file_mru*
 unite-action-jump_list	unite.txt	/*unite-action-jump_list*
+unite-action-mapping	unite.txt	/*unite-action-mapping*
 unite-action-openable	unite.txt	/*unite-action-openable*
 unite-action-process	unite.txt	/*unite-action-process*
 unite-action-register	unite.txt	/*unite-action-register*
@@ -188,6 +189,7 @@ unite-filter-default	unite.txt	/*unite-filter-default*
 unite-filter-matcher_default	unite.txt	/*unite-filter-matcher_default*
 unite-filter-matcher_fuzzy	unite.txt	/*unite-filter-matcher_fuzzy*
 unite-filter-matcher_glob	unite.txt	/*unite-filter-matcher_glob*
+unite-filter-matcher_hide_hidden_files	unite.txt	/*unite-filter-matcher_hide_hidden_files*
 unite-filter-matcher_migemo	unite.txt	/*unite-filter-matcher_migemo*
 unite-filter-matcher_regexp	unite.txt	/*unite-filter-matcher_regexp*
 unite-filter-sorter_default	unite.txt	/*unite-filter-sorter_default*
@@ -244,6 +246,8 @@ unite-options-hide-source-names	unite.txt	/*unite-options-hide-source-names*
 unite-options-horizontal	unite.txt	/*unite-options-horizontal*
 unite-options-immediately	unite.txt	/*unite-options-immediately*
 unite-options-input	unite.txt	/*unite-options-input*
+unite-options-no-cursor-line	unite.txt	/*unite-options-no-cursor-line*
+unite-options-no-empty	unite.txt	/*unite-options-no-empty*
 unite-options-no-quit	unite.txt	/*unite-options-no-quit*
 unite-options-no-split	unite.txt	/*unite-options-no-split*
 unite-options-no-start-insert	unite.txt	/*unite-options-no-start-insert*

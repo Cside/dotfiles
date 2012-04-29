@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: mappings.vim
 " AUTHOR: Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 04 Feb 2012.
+" Last Modified: 22 Apr 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -39,7 +39,8 @@ function! unite#mappings#define_default_mappings()"{{{
   nnoremap <expr><buffer> <Plug>(unite_insert_enter)
         \ <SID>insert_enter('i')
   nnoremap <expr><buffer> <Plug>(unite_insert_head)
-        \ <SID>insert_enter('0'.(len(unite#get_current_unite().prompt)-1).'li')
+        \ <SID>insert_enter('A'.
+        \  (repeat("\<Left>", len(substitute(unite#get_input(), '.', 'x', 'g')))))
   nnoremap <expr><buffer> <Plug>(unite_append_enter)
         \ <SID>insert_enter('a')
   nnoremap <expr><buffer> <Plug>(unite_append_end)
@@ -100,11 +101,12 @@ function! unite#mappings#define_default_mappings()"{{{
   inoremap <silent><buffer> <Plug>(unite_exit)
         \ <ESC>:<C-u>call <SID>exit()<CR>
   inoremap <silent><expr><buffer> <Plug>(unite_insert_leave)
-        \ (line('.') <= unite#get_current_unite().prompt_linenr) ?
-        \ "\<ESC>0".(unite#get_current_unite().prompt_linenr+1)."G" : "\<ESC>0"
+        \ ((line('.') <= unite#get_current_unite().prompt_linenr) ?
+        \ "\<ESC>0".(unite#get_current_unite().prompt_linenr+1)."G" : "\<ESC>0")
+        \ . ":call unite#redraw()\<CR>"
   inoremap <silent><expr><buffer> <Plug>(unite_delete_backward_char)
         \ col('.') <= (len(unite#get_current_unite().prompt)+1) ?
-        \ "\<C-o>:\<C-u>call \<SID>exit()\<Cr>" : "\<C-h>"
+        \ "\<C-o>:\<C-u>call \<SID>exit()\<CR>" : "\<C-h>"
   inoremap <expr><buffer> <Plug>(unite_delete_backward_line)
         \ repeat("\<C-h>", col('.')-(len(unite#get_current_unite().prompt)+1))
   inoremap <expr><buffer> <Plug>(unite_delete_backward_word)
@@ -221,6 +223,7 @@ function! unite#mappings#define_default_mappings()"{{{
   imap <buffer> <C-a>     <Plug>(unite_move_head)
   imap <buffer> <Home>    <Plug>(unite_move_head)
   imap <buffer> <C-l>     <Plug>(unite_redraw)
+  imap <buffer> <ESC>     <Plug>(unite_insert_leave)
 
   inoremap <silent><buffer><expr> d
         \ unite#smart_map('d', unite#do_action('delete'))
@@ -247,6 +250,8 @@ function! unite#mappings#narrowing(word)"{{{
   endif
 endfunction"}}}
 function! unite#mappings#do_action(action_name, ...)"{{{
+  call unite#redraw()
+
   let candidates = get(a:000, 0, unite#get_marked_candidates())
   let new_context = get(a:000, 1, {})
   let is_clear_marks = get(a:000, 2, 1)
@@ -295,13 +300,11 @@ function! unite#mappings#do_action(action_name, ...)"{{{
 
   " Execute action.
   let is_redraw = 0
-  let is_quit = 0
   let _ = []
   for table in action_tables
     " Check quit flag.
     if table.action.is_quit
       call unite#all_quit_session(0)
-      let is_quit = 1
     endif
 
     try
@@ -516,8 +519,9 @@ function! unite#mappings#_choose_action(candidates)"{{{
 
   let unite = unite#get_current_unite()
 
-  call unite#start_temporary([[s:source_action] + a:candidates],
-        \ { 'source__sources' : unite.sources }, 'action')
+  call unite#start_temporary([[s:source_action] + a:candidates], {
+        \ 'source__sources' : unite.sources,
+        \ }, 'action')
 endfunction"}}}
 function! s:insert_enter(key)"{{{
   setlocal modifiable
@@ -623,6 +627,10 @@ function! s:loop_cursor_down(is_skip_not_matched)"{{{
   let is_insert = mode() ==# 'i'
   let prompt_linenr = unite#get_current_unite().prompt_linenr
 
+  if line('.') <= prompt_linenr && !is_insert
+    return 'j'
+  endif
+
   if line('.') == line('$')
     " Loop.
     if is_insert
@@ -663,11 +671,15 @@ function! s:loop_cursor_up(is_skip_not_matched)"{{{
   let prompt_linenr = unite#get_current_unite().prompt_linenr
 
   if line('.') <= prompt_linenr
-    " Loop.
-    if is_insert
-      return "\<C-End>\<Home>"
+    if is_insert || line('.') <= 2
+      " Loop.
+      if is_insert
+        return "\<C-End>\<Home>"
+      else
+        return 'G'
+      endif
     else
-      return 'G'
+      return 'k'
     endif
   endif
 
@@ -786,6 +798,10 @@ function! s:source_action.hooks.on_syntax(args, context)"{{{
 endfunction"}}}
 
 function! s:source_action.gather_candidates(args, context)"{{{
+  if empty(a:args)
+    return
+  endif
+
   let candidates = copy(a:args)
 
   " Print candidates.
@@ -808,14 +824,14 @@ function! s:source_action.gather_candidates(args, context)"{{{
 
   let sources = map(copy(candidates), 'v:val.source')
 
-  return sort(map(filter(values(uniq_actions), 'v:val.is_listed'), '{
-        \   "word" : v:val.name,
-        \   "abbr" : printf("%-' . max . 's -- %s",
+  return sort(map(filter(values(uniq_actions), 'v:val.is_listed'), "{
+        \   'word' : v:val.name,
+        \   'abbr' : printf('%-" . max . "s -- %s',
         \       v:val.name, v:val.description),
-        \   "source__candidates" : candidates,
-        \   "action__action" : v:val,
-        \   "source__sources" : sources,
-        \ }'), 's:compare_word')
+        \   'source__candidates' : candidates,
+        \   'action__action' : v:val,
+        \   'source__sources' : sources,
+        \ }"), 's:compare_word')
 endfunction"}}}
 
 function! s:compare_word(i1, i2)

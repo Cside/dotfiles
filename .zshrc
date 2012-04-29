@@ -49,6 +49,7 @@ alias start_mysqld='sudo chown -R mysql /usr/local/mysql; sudo /usr/local/mysql/
 alias hide_icon='defaults write com.apple.finder CreateDesktop -boolean false;killall Finder'
 alias show_icon='defaults delete com.apple.finder CreateDesktop;killall Finder'
 alias findf="find . -type f"
+alias findff="find . -type f -print0"
 alias findd="find . -type d"
 alias printpl="perl ~/print.pl"
 alias cpanm="sudo cpanm"
@@ -61,6 +62,7 @@ alias KILL="kill -KILL"
 alias zrc="vim ~/.zshrc"
 # alias rm='mv -f --backup=numbered --target-directory ~/.Trash'
 alias vi='vim -u ~/dotfiles/.vimrc.read'
+alias scrc="vim ~/.screenrc"
 alias vrc="vim ~/.vimrc"
 alias vrcw="vim ~/dotfiles/.vimrc.write"
 alias vrcr="vim ~/dotfiles/.vimrc.read"
@@ -77,7 +79,6 @@ alias vim_ipconfig="sudo vim /etc/sysconfig/iptables"
 alias re-httpd="sudo service httpd restart"
 alias re-apache="sudo service httpd restart"
 alias re-iptables="sudo /etc/rc.d/init.d/iptables restart"
-alias zrc="vim ~/.zshrc"
 alias SSH='ssh cside.me'
 alias js='node'
 alias gpom='git push origin master'
@@ -85,6 +86,8 @@ alias youtube-audio='youtube-dl --audio-format mp3 --extract-audio --title'
 alias ti='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/iphone/builder.py'
 alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/titanium.py'
 alias pe='xargs -L 1 perl -i -pe'
+alias q='exit'
+alias quit='exit'
 
 alias -g L='| less'
 alias -g H='| head'
@@ -94,7 +97,7 @@ alias -g W='| wc'
 alias -g S='| sed'
 alias -g A='| awk'
 alias -g W='| wc'
-alias -g X='| xargs -i'
+alias -g X='| xargs -i -0'
 alias -g V='| vim -'
 
 #----------------------------------------------------------
@@ -221,7 +224,7 @@ local ORANGE=$'%{[33m%}'
 local BLUE=$'%{[34m%}'
 local MAGENTA=$'%{[35m%}'
 local DEFAULT=$'%{[m%}'
-PROMPT=$ORANGE'%n@%m '$MAGENTA'%~'$BLUE' $(git_info)'$GREEN$'\n%T '
+PROMPT=$ORANGE'%n@%m '$MAGENTA'%~'$BLUE' $(git_info)'$GREEN$'\n$ '
 
 function precmd() {
     #$HOME/.zsh/precmd.pl `history -n -1 | head -1` # 終わったらGrowlNotify TODO
@@ -298,26 +301,30 @@ function up() {
     done
 }
 # Perl
+export PERLDOC_PAGER=lv
 function pl() {
     if [ $# = 1 ]; then
         vim `perldoc -l $1`
     fi
-}
-function is-core {
+} 
+function is_core() {
     if [ $# = 1 ]; then
-        perl -MModule::CoreList -E "say Module::CoreList->first_release($1);"
+        perl -e 'use Module::CoreList; print Module::CoreList->first_release('$1'), "\n";'
     fi
 }
-function hisgre() {
-    if [ $# = 1 ]; then
-		history -r 0 | grep $1 | head
-    fi
+function pm() {
+  [ -n "$1" ] && perldoc -m $1
 }
-function pswitch() {
-    if [ $# = 1 ]; then
-        sudo perlbrew switch perl-$1
-    fi
+function pv() {
+  [ -n "$1" ] && perl -e "use $1;print qq|$1: \$$1::VERSION\n|;";
 }
+function pmgrep() {
+  [ -n "$1" ] && [ -n "$2" ] && grep -C3 -n "$1" `perldoc -l $2` | less -r;
+}
+#complete -C perldoc-complete -o nospace -o default perldoc
+#complete -C perldoc-complete -o nospace -o default pm
+#complete -C perldoc-complete -o nospace -o default pv
+#complete -C perldoc-complete -o nospace -o default pmgrep
 
 #----------------------------------------------------------
 # 環境依存対応

@@ -295,8 +295,27 @@ snippet						*neocomplcache-snippets-complete-unite-action-snippet*
 ==============================================================================
 CHANGELOG					*neocomplcache-snippets-complete-changelog*
 
+2012-04-05
+- Fixed nested placeholder problem.
+
+2012-03-23
+- Fixed substitute pattern bug.
+
+2012-03-19
+- Fixed substitute marker.
+
+2012-03-18
+- Fixed for expandtab.
+
+2012-03-17
+- Fixed for echodoc.
+
+2012-03-16
+- Fixed snippets indentation.
+
 2012-03-15
 - Improved search snippet markers behavior.
+- Don't conceal default codes.
 
 2012-03-14
 - Refactored expand snippet behavior.

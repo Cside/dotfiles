@@ -218,6 +218,10 @@ http://www.ustream.tv/recorded/11240673
 		いときにはuniteバッファを開かない。絞り込み時のときも、候補
 		が一つになったら即座に実行される。
 
+						*unite-options-no-empty*
+		-no-empty
+		候補がないときはuniteバッファを開かない。
+
 						*unite-options-auto-preview*
 		-auto-preview
 		候補を選択した際、自動的に"preview"アクションを実行する。
@@ -282,9 +286,15 @@ http://www.ustream.tv/recorded/11240673
 		カーソル行のハイライトを変更する。このオプションが省略されると、
 		|g:unite_cursor_line_highlight|が使用される。
 
+						*unite-options-no-cursor-line*
+		-no-cursor-line
+		カーソル行のハイライトを無効にする。
+
 						*unite-options-hide-source-names*
 		-hide-source-names
 		source名を表示しない。
+		Note: このオプションはuniteのステータスラインを表示しないように
+		する。
 
 :UniteWithCurrentDir [{options}] {sources}	*:UniteWithCurrentDir*
 		初期の絞込みテキストが現在のディレクトリである他は|:Unite|と同
@@ -922,6 +932,7 @@ x		候補を選択している場合は|<Plug>(unite_quick_match_default_action)
 インサートモードマッピング
 {lhs}		{rhs}
 --------	-----------------------------
+<ESC>		|i_<Plug>(unite_insert_leave)|
 <Tab>		|i_<Plug>(unite_choose_action)|
 <C-n>		|i_<Plug>(unite_select_next_line)|
 <Down>		|i_<Plug>(unite_select_next_line)|
@@ -1265,8 +1276,8 @@ file		入力されたファイルを候補とする。
 		Note: デフォルトでは、"../"といった親ディレクトリや隠しファイル
 		は表示されない。絞り込み文字列に.を入力すると表示される。
 
-						*unite-source-file_new*
-file_new	入力を新ファイル名とした候補とする。
+						*unite-source-file/new*
+file/new	入力を新ファイル名とした候補とする。
 
 						*unite-source-file_mru*
 file_mru	最近使用したファイルを候補とする。使用した順番に整列される。
@@ -1708,6 +1719,11 @@ matcher_migemo	migemoを使用して、候補をフィルタリングするmatch
 		call unite#custom_filters('line',
 		\ ['matcher_migemo', 'sorter_default', 'converter_default'])
 <
+						*unite-filter-matcher_hide_hidden_files*
+matcher_hide_hidden_files
+		隠しファイルを隠すmatcher。ユーザーの絞り込み文字列に"."が含ま
+		れていると隠しファイルは表示される。
+
 						*unite-filter-sorter_default*
 sorter_default	|unite-filter-default|により呼び出される、デフォルトのsorter。
 		初期状態では、["sorter_nothing"]のsorterを呼び出す。
@@ -1901,11 +1917,14 @@ process						*unite-action-process*
 	sigterm		プロセスにSIGTERMを送る(デフォルト)
 	sigkill		プロセスにSIGKILLを送る
 
-session					*unite-action-session*
+session						*unite-action-session*
 	load		セッションを読み込む(デフォルト)
 	delete		セッションを削除する
 	open		セッションを編集する
 	rename		セッション名を変更する
+
+mapping						*unite-action-mapping*
+	help		ドキュメントを参照する
 
 						*unite-default-action*
 デフォルトアクション
@@ -2039,6 +2058,10 @@ hooks			辞書		(任意)
 			on_close		*unite-source-attribute-hooks-on_close*
 			<Plug>(unite_exit)を実行したときや、コマンドの実行後に
 			uniteバッファが閉じられた後に呼ばれる。
+			この関数は{args}と{context}を引数に取る。
+
+			on_pre_filter		*unite-source-attribute-hooks-on_pre_filter*
+			filterが呼ばれる前に呼ばれる。
 			この関数は{args}と{context}を引数に取る。
 
 			on_post_filter		*unite-source-attribute-hooks-on_post_filter*

@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: snippets_complete.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 15 Mar 2012.
+" Last Modified: 05 Apr 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -84,9 +84,11 @@ function! s:source.initialize()"{{{
     " Supported conceal features.
     augroup neocomplcache
       autocmd BufNewFile,BufRead,ColorScheme *
+            \ syn match   neocomplcacheExpandSnippets
+            \ '<`\d\+:\|`>\|<{\d\+:\|}>' conceal
+      autocmd BufNewFile,BufRead,ColorScheme *
             \ execute 'syn match   neocomplcacheExpandSnippets'
-            \  "'".s:get_placeholder_marker_pattern(). '\|'
-            \ .s:get_sync_placeholder_marker_pattern().'\|'
+            \  '''<`\d\+\\\@<!`>\|<{\d\+\\\@<!}>\|'
             \ .s:get_mirror_placeholder_marker_pattern()."'"
             \ 'conceal cchar=$'
     augroup END
@@ -201,8 +203,6 @@ function! s:doc_dict.search(cur_text)"{{{
   call add(ret, { 'text' : snip.word, 'highlight' : 'String' })
   call add(ret, { 'text' : ' ' })
   call add(ret, { 'text' : snip.menu, 'highlight' : 'Special' })
-  call add(ret, { 'text' : ' ' })
-  call add(ret, { 'text' : snip.snip})
 
   return ret
 endfunction"}}}
@@ -273,35 +273,35 @@ function! s:caching()"{{{
 endfunction"}}}
 
 function! s:set_snippet_dict(snippet_pattern, snippet_dict, dup_check, snippets_file)"{{{
-  if has_key(a:snippet_pattern, 'name')
-    let pattern = s:set_snippet_pattern(a:snippet_pattern)
-    let action_pattern = '^snippet\s\+' . a:snippet_pattern.name . '$'
-    let a:snippet_dict[a:snippet_pattern.name] = pattern
-    let a:dup_check[a:snippet_pattern.name] = 1
-
-    if has_key(a:snippet_pattern, 'alias')
-      for alias in a:snippet_pattern.alias
-        let alias_pattern = copy(pattern)
-        let alias_pattern.word = alias
-
-        let abbr = (g:neocomplcache_max_keyword_width >= 0 &&
-              \       len(alias) > g:neocomplcache_max_keyword_width) ?
-              \ printf(abbr_pattern, alias, alias[-8:]) : alias
-        let alias_pattern.abbr = abbr
-        let alias_pattern.action__path = a:snippets_file
-        let alias_pattern.action__pattern = action_pattern
-        let alias_pattern.real_name = a:snippet_pattern.name
-
-        let a:snippet_dict[alias] = alias_pattern
-        let a:dup_check[alias] = 1
-      endfor
-    endif
-
-    let snippet = a:snippet_dict[a:snippet_pattern.name]
-    let snippet.action__path = a:snippets_file
-    let snippet.action__pattern = action_pattern
-    let snippet.real_name = a:snippet_pattern.name
+  if !has_key(a:snippet_pattern, 'name')
+    return
   endif
+
+  let pattern = s:set_snippet_pattern(a:snippet_pattern)
+  let action_pattern = '^snippet\s\+' . a:snippet_pattern.name . '$'
+  let a:snippet_dict[a:snippet_pattern.name] = pattern
+  let a:dup_check[a:snippet_pattern.name] = 1
+
+  for alias in get(a:snippet_pattern, 'alias', [])
+    let alias_pattern = copy(pattern)
+    let alias_pattern.word = alias
+
+    let abbr = (g:neocomplcache_max_keyword_width >= 0 &&
+          \       len(alias) > g:neocomplcache_max_keyword_width) ?
+          \ printf(abbr_pattern, alias, alias[-8:]) : alias
+    let alias_pattern.abbr = abbr
+    let alias_pattern.action__path = a:snippets_file
+    let alias_pattern.action__pattern = action_pattern
+    let alias_pattern.real_name = a:snippet_pattern.name
+
+    let a:snippet_dict[alias] = alias_pattern
+    let a:dup_check[alias] = 1
+  endfor
+
+  let snippet = a:snippet_dict[a:snippet_pattern.name]
+  let snippet.action__path = a:snippets_file
+  let snippet.action__pattern = action_pattern
+  let snippet.real_name = a:snippet_pattern.name
 endfunction"}}}
 function! s:set_snippet_pattern(dict)"{{{
   let abbr_pattern = printf('%%.%ds..%%s',
@@ -441,7 +441,7 @@ function! s:load_snippets(snippet, snippets_file)"{{{
           let snippet_pattern.word = matchstr(line, '^\s\+\zs.*$')
         else
           let snippet_pattern.word .= "\n"
-                \ . matchstr(line, '^\s\+\zs.*$')
+                \ . matchstr(line, '^\%(\t\| *\)\zs.*$')
         endif
       elseif line =~ '^$'
         " Blank line.
@@ -605,21 +605,27 @@ function! s:indent_snippet(begin, end)"{{{
   let equalprg = &l:equalprg
   setlocal equalprg=
 
+  let pos = getpos('.')
+
+  let base_indent = matchstr(getline(a:begin), '^\s\+')
   for line_nr in range(a:begin, a:end)
     call cursor(line_nr, 0)
 
-    if &l:expandtab && getline('.') =~ '^\t\+'
-      " Expand tab.
-      cal setline('.', substitute(getline('.'),
-            \ '^\t\+', repeat(' ', &shiftwidth *
-            \    len(matchstr(getline('.'), '^\t\+'))), ''))
+    if getline('.') =~ '^\t\+'
+      if &l:expandtab
+        " Expand tab.
+        cal setline('.', substitute(getline('.'),
+              \ '^\t\+', base_indent . repeat(' ', &shiftwidth *
+              \    len(matchstr(getline('.'), '^\t\+'))), ''))
+      elseif line_nr != a:begin
+        call setline('.', base_indent . getline('.'))
+      endif
     else
-      let pos = getpos('.')
-      startinsert!
       silent normal! ==
-      call setpos('.', pos)
     endif
   endfor
+
+  call setpos('.', pos)
 
   let &l:equalprg = equalprg
 endfunction"}}}
@@ -738,6 +744,14 @@ function! s:expand_placeholder(start, end, holder_cnt, line)"{{{
         \ '\\d\\+', a:holder_cnt, '')
   let default = substitute(
         \ matchstr(current_line, default_pattern), '\\\ze.', '', 'g')
+  " Substitute marker.
+  let default = substitute(default,
+        \ s:get_placeholder_marker_substitute_pattern(),
+        \ '<`\1`>', 'g')
+  let default = substitute(default,
+        \ s:get_mirror_placeholder_marker_substitute_pattern(),
+        \ '<|\1|>', 'g')
+
   let default_len = len(default)
 
   let pos = getpos('.')
@@ -790,7 +804,7 @@ function! s:search_sync_placeholder(start, end, number)"{{{
           \ '\\d\\+', a:number, '')
   for line in filter(range(a:start, a:end),
         \ 'getline(v:val) =~ pattern')
-    return 1
+    return a:number
   endfor
 
   return 0
@@ -798,20 +812,21 @@ endfunction"}}}
 function! s:substitute_placeholder_marker(start, end, snippet_holder_cnt)"{{{
   if a:snippet_holder_cnt > 1
     let cnt = a:snippet_holder_cnt-1
-    let marker = substitute(s:get_sync_placeholder_marker_pattern(),
+    let sync_marker = substitute(s:get_sync_placeholder_marker_pattern(),
         \ '\\d\\+', cnt, '')
+    let mirror_marker = substitute(
+          \ s:get_mirror_placeholder_marker_pattern(),
+          \ '\\d\\+', cnt, '')
     let line = a:start
 
     for line in range(a:start, a:end)
-      if getline(line) =~ marker
+      if getline(line) =~ sync_marker
         let sub = escape(matchstr(getline(line),
               \ substitute(s:get_sync_placeholder_marker_default_pattern(),
               \ '\\d\\+', cnt, '')), '/\')
-        silent execute printf('%d,%ds/' . substitute(
-              \ s:get_mirror_placeholder_marker_pattern(),
-              \ '\\d\\+', cnt, '') . '/%s/'
-              \ . (&gdefault ? '' : 'g'), a:start, a:end, sub)
-        call setline(line, substitute(getline('.'), marker, sub, 'g'))
+        silent execute printf('%d,%ds/' . mirror_marker . '/%s/'
+          \ . (&gdefault ? '' : 'g'), a:start, a:end, sub)
+        call setline(line, substitute(getline(line), sync_marker, sub, ''))
       endif
     endfor
   elseif search(s:get_sync_placeholder_marker_pattern(), 'wb') > 0
@@ -820,13 +835,14 @@ function! s:substitute_placeholder_marker(start, end, snippet_holder_cnt)"{{{
     let cnt = matchstr(getline('.'),
           \ substitute(s:get_sync_placeholder_marker_pattern(),
           \ '\\d\\+', '\\zs\\d\\+\\ze', ''))
-    silent execute printf('%%s/' . substitute(
-          \ s:get_mirror_placeholder_marker_pattern(),
-          \ '\\d\\+', cnt, '') . '/%s/'
+    silent execute printf('%%s/' . mirror_marker . '/%s/'
           \ . (&gdefault ? 'g' : ''), sub)
-    let marker = substitute(s:get_sync_placeholder_marker_pattern(),
+    let sync_marker = substitute(s:get_sync_placeholder_marker_pattern(),
         \ '\\d\\+', cnt, '')
-    call setline('.', substitute(getline('.'), marker, sub, 'g'))
+    let mirror_marker = substitute(
+          \ s:get_mirror_placeholder_marker_pattern(),
+          \ '\\d\\+', cnt, '')
+    call setline('.', substitute(getline('.'), sync_marker, sub, ''))
   endif
 endfunction"}}}
 function! s:trigger(function)"{{{

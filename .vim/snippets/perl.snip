@@ -96,6 +96,29 @@ snippet r200
 snippet r404
     [ 404, ['Content-Type', 'text/plain'], ['404 Not Found'] ]
 
+snippet psgi
+    #!/usr/bin/env perl
+    use 5.10.0;
+    use strict;
+    use warnings;
+    use Plack::Builder;
+    use Plack::Response;
+    
+    my $app = sub {
+        my $env = shift;
+    
+        my $res = Plack::Response->new(200);
+        $res->content_type('text/html');
+        $res->body("Hello World");
+    
+        return $res->finalize;
+    };
+    
+    builder {
+        # enable '';
+        $app;
+    };
+
 snippet coro
     use Coro;
     use Coro::LWP;

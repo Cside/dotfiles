@@ -155,6 +155,7 @@ unite-action-directory_mru	unite.jax	/*unite-action-directory_mru*
 unite-action-file	unite.jax	/*unite-action-file*
 unite-action-file_mru	unite.jax	/*unite-action-file_mru*
 unite-action-jump_list	unite.jax	/*unite-action-jump_list*
+unite-action-mapping	unite.jax	/*unite-action-mapping*
 unite-action-openable	unite.jax	/*unite-action-openable*
 unite-action-process	unite.jax	/*unite-action-process*
 unite-action-register	unite.jax	/*unite-action-register*
@@ -187,6 +188,7 @@ unite-filter-default	unite.jax	/*unite-filter-default*
 unite-filter-matcher_default	unite.jax	/*unite-filter-matcher_default*
 unite-filter-matcher_fuzzy	unite.jax	/*unite-filter-matcher_fuzzy*
 unite-filter-matcher_glob	unite.jax	/*unite-filter-matcher_glob*
+unite-filter-matcher_hide_hidden_files	unite.jax	/*unite-filter-matcher_hide_hidden_files*
 unite-filter-matcher_migemo	unite.jax	/*unite-filter-matcher_migemo*
 unite-filter-matcher_regexp	unite.jax	/*unite-filter-matcher_regexp*
 unite-filter-sorter_default	unite.jax	/*unite-filter-sorter_default*
@@ -242,6 +244,8 @@ unite-options-hide-source-names	unite.jax	/*unite-options-hide-source-names*
 unite-options-horizontal	unite.jax	/*unite-options-horizontal*
 unite-options-immediately	unite.jax	/*unite-options-immediately*
 unite-options-input	unite.jax	/*unite-options-input*
+unite-options-no-cursor-line	unite.jax	/*unite-options-no-cursor-line*
+unite-options-no-empty	unite.jax	/*unite-options-no-empty*
 unite-options-no-quit	unite.jax	/*unite-options-no-quit*
 unite-options-no-split	unite.jax	/*unite-options-no-split*
 unite-options-no-start-insert	unite.jax	/*unite-options-no-start-insert*
@@ -268,6 +272,7 @@ unite-source-attribute-hooks	unite.jax	/*unite-source-attribute-hooks*
 unite-source-attribute-hooks-on_close	unite.jax	/*unite-source-attribute-hooks-on_close*
 unite-source-attribute-hooks-on_init	unite.jax	/*unite-source-attribute-hooks-on_init*
 unite-source-attribute-hooks-on_post_filter	unite.jax	/*unite-source-attribute-hooks-on_post_filter*
+unite-source-attribute-hooks-on_pre_filter	unite.jax	/*unite-source-attribute-hooks-on_pre_filter*
 unite-source-attribute-hooks-on_pre_init	unite.jax	/*unite-source-attribute-hooks-on_pre_init*
 unite-source-attribute-hooks-on_syntax	unite.jax	/*unite-source-attribute-hooks-on_syntax*
 unite-source-attribute-is_listed	unite.jax	/*unite-source-attribute-is_listed*
@@ -285,8 +290,8 @@ unite-source-change	unite.jax	/*unite-source-change*
 unite-source-command	unite.jax	/*unite-source-command*
 unite-source-directory_mru	unite.jax	/*unite-source-directory_mru*
 unite-source-file	unite.jax	/*unite-source-file*
+unite-source-file/new	unite.jax	/*unite-source-file\/new*
 unite-source-file_mru	unite.jax	/*unite-source-file_mru*
-unite-source-file_new	unite.jax	/*unite-source-file_new*
 unite-source-file_point	unite.jax	/*unite-source-file_point*
 unite-source-file_rec	unite.jax	/*unite-source-file_rec*
 unite-source-file_rec/async	unite.jax	/*unite-source-file_rec\/async*
