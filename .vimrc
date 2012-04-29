@@ -184,25 +184,15 @@ map <Down>  g<Down>
 " ==========================
 " Color
 " =========================
-" ポップアップ表示
-highlight Pmenu     ctermbg=darkred guibg=#4c745a
-highlight PmenuSel  ctermbg=darkmagenta guibg=#d4b979
-highlight PmenuSbar ctermbg=0 guibg=#333333
+colorscheme desert
 
 " 全角スペースと行末空白をハイライト
 highlight ZenkakuSpace ctermbg=6
 match ZenkakuSpace /\s\+$\|　/
 
-"" CursorLine
-"set cursorline
-":hi CursorLine   ctermbg=darkblue guibg=darkblue
-":hi CursorColumn ctermbg=darkblue guibg=darkblue
-"autocmd WinEnter * setlocal cursorline
-"autocmd WinLeave * setlocal nocursorline
-
-colorscheme chela_light
-
-hi LineNr ctermfg=darkgray
+hi Pmenu   ctermbg=4
+hi LineNr  ctermfg=darkgrey guifg=darkgrey
+hi Comment term=bold ctermfg=4 guifg=SkyBlue
 
 " ==========================
 " 表示まわり
@@ -253,7 +243,6 @@ autocmd BufNewFile,BufRead *.tt     set filetype=html
 
 "ステータスライン
 let &statusline='[#%n:%t%m] %y%{GetEFstatus()} %{fugitive#statusline()}%=%{cfi#get_func_name()} @ %l-%c %p%%   '
-
 
 function! GetEFstatus()
   let str = ''
