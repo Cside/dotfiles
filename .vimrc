@@ -27,6 +27,7 @@ Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tsaleh/vim-align'
+Bundle 'scrooloose/nerdcommenter'
 
 " for alc
 nnoremap <Leader>p <Esc>:Perldoc<Space>
@@ -43,20 +44,15 @@ noremap <expr><Leader>a ':Ref alc ' . expand('<cword>') . '<CR>'
 " ==========================
 " QuickRun
 nmap <Leader>r <plug>(quickrun)
-" open-browser.vim
-nmap <Space>o <Plug>(openbrowser-smart-search)
-" Surround.vim
-let g:surround_{char2nr("*")} = "/* \r */"
-let g:surround_{char2nr("$")} = "$=h:\r$"
-let g:surround_{char2nr("-")} = "<!-- \r -->"
-" Ref.vim
-
-" Zen
 let g:user_zen_settings = {
   \  'indentation' : '  ',
 \}
+" PerlUseInsertion
+nmap <silent> <buffer> use :PerlUseInsertionCWord<CR>
+" NERDCommenterToggle
+xmap <Leader>c <Plug>NERDCommenterToggle<CR>
 
-nmap <silent> <buffer> em :PerlUseInsertionCWord<CR>
+xmap <Leader>a :Align
 
 " ----------------------------------------------------------------
 " neocomplcache
