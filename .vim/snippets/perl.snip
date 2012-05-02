@@ -14,6 +14,12 @@ snippet dd
     local $Data::Dumper::Terse  = 1;
     warn Dumper 
 
+snippet p
+    use Data::Dumper;
+    local $Data::Dumper::Indent = 1;
+    local $Data::Dumper::Terse  = 1;
+    sub p { warn Dumper $_[0] }
+
 snippet dds
     use Data::Dump::Streamer qw(Dumper);
     warn Dumper 

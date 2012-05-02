@@ -31,7 +31,6 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-speeddating'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tsaleh/vim-align'
-Bundle 'skammer/vim-css-color'
 
 " for alc
 nnoremap <Leader>p <Esc>:Perldoc<Space>
@@ -67,8 +66,6 @@ nmap <silent> <buffer> em :PerlUseInsertionCWord<CR>
 " neocomplcache
 " ----------------------------------------------------------------
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use underbar completion.
@@ -114,8 +111,7 @@ smap       <C-k> <Plug>(neocomplcache_snippets_expand)
 " -------------------------------------------------------------------------
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_time_format = ""
-nmap <C-l> :Unite -buffer-name=files buffer_tab file_mru file file_rec file/new<CR>
-nmap <C-k> :Unite -buffer-name=files buffer_tab               file_rec file/new<CR>
+nmap <C-l> :Unite -buffer-name=files buffer file_mru file_rec/async file/new<CR>
 nmap <C-o> :Unite outline<CR>
 " less delay
 let g:unite_update_time = 10
@@ -127,7 +123,7 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 nnoremap <silent> <Space>uu :Unite file file/new<CR>
 nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
 nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>
-nnoremap <silent> <Space>inc :Unite script:perl:/Users/Cside/bin/unite-source-inc.pl<CR>
+nnoremap <silent> <Space>inc :Unite -start-insert script:perl:$HOME/bin/unite-source-inc.pl<CR>
 
 nnoremap <silent> <Space>uc :UniteWithBufferDir -buffer-name=files file file/new<CR>
 nnoremap <silent> <Space>ut :Unite tag<CR>
@@ -141,23 +137,23 @@ nnoremap <silent> <Space>ui :Unite -buffer-name=files file_include<CR>
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
-nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
-nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
-inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
+  nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
+  nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
+  inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
 
-call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
-call unite#set_substitute_pattern('file', '/\ze[^*]', '/*', 10)
+  call unite#set_substitute_pattern('file', '[^~.]\zs/', '*/*', 20)
+  call unite#set_substitute_pattern('file', '/\ze[^*]', '/*', 10)
 
-call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
-call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
-call unite#set_substitute_pattern('file', '^\\', '~/*')
+  call unite#set_substitute_pattern('file', '^@@', '\=fnamemodify(expand("#"), ":p:h")."/*"', 2)
+  call unite#set_substitute_pattern('file', '^@', '\=getcwd()."/*"', 1)
+  call unite#set_substitute_pattern('file', '^\\', '~/*')
 
-call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
+  call unite#set_substitute_pattern('file', '\*\*\+', '*', -1)
 
-call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
-call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
+  call unite#set_substitute_pattern('file', '\\\@<! ', '\\ ', -20)
+  call unite#set_substitute_pattern('file', '\\ \@!', '/', -30)
+  let g:unite_enable_ignore_case = 1
+  let g:unite_enable_smart_case = 1
 endfunction"}}}
 
 " ===========================
@@ -187,10 +183,13 @@ map <Down>  g<Down>
 colorscheme desert
 
 " 全角スペースと行末空白をハイライト
-highlight ZenkakuSpace ctermbg=6
+highlight ZenkakuSpace ctermbg=darkgrey
 match ZenkakuSpace /\s\+$\|　/
 
-hi Pmenu   ctermbg=4
+hi Pmenu    ctermfg=white ctermbg=darkgray
+hi PmenuSel ctermfg=white ctermbg=darkblue
+hi StatusLine   cterm=bold ctermfg=black ctermbg=darkgrey
+hi StatusLineNC cterm=bold ctermfg=black ctermbg=darkgrey
 hi LineNr  ctermfg=darkgrey guifg=darkgrey
 hi Comment term=bold ctermfg=4 guifg=SkyBlue
 

@@ -88,6 +88,7 @@ alias titanium='~/Library/Application\ Support/Titanium/mobilesdk/osx/1.8.2/tita
 alias pe='xargs -L 1 perl -i -pe'
 alias q='exit'
 alias quit='exit'
+alias vi='vim'
 
 alias -g L='| less'
 alias -g H='| head'
@@ -320,6 +321,9 @@ function pv() {
 }
 function pmgrep() {
   [ -n "$1" ] && [ -n "$2" ] && grep -C3 -n "$1" `perldoc -l $2` | less -r;
+}
+function perlp() {
+  [ -n "$1" ] && perl -MData::Dumper -E "sub p { local \$Data::Dumper::Indent = 1; local \$Data::Dumper::Terse  = 1; warn Dumper shift } p(do {$1})"
 }
 #complete -C perldoc-complete -o nospace -o default perldoc
 #complete -C perldoc-complete -o nospace -o default pm
