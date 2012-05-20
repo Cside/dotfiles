@@ -13,6 +13,9 @@ export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/sbin:$PATH
 export PATH=$PATH:/usr/sbin:$PATH
 export PATH=$PATH:/usr/local/sbin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/sbin:$PATH
 #export PATH=$HOME/perl5/perlbrew/perls/current/bin:$PATH
 
 # ruby
@@ -41,8 +44,12 @@ alias gls='git branch'
 alias gla='git branch -a'
 alias gst='git status'
 alias gdi='git diff'
+alias gbr='git branch'
+alias gre='git rebase'
 alias gl='git log -p'
 alias gti='git'
+alias ack="ack -ia"
+alias wget='wget --no-check-certificate'
 alias sc='screen'
 alias scl='screen -ls'
 alias scd='screen -dRRS'
@@ -96,7 +103,7 @@ alias gi='git'
 alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
-alias -g G='2>&1 | grep'
+alias -g G='2>&1 | grep -i'
 alias -g W='| wc'
 alias -g S='| sed'
 alias -g A='| awk'
@@ -214,22 +221,51 @@ function history-all { history -E 1 }
 #----------------------------------------------------------
 # プロンプト表示関連
 #----------------------------------------------------------
-function git_info() { 
-	local info 
-	if test -z $(git rev-parse --git-dir 2> /dev/null); then 
-		info='' 
-	else 
-		info="${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/}" 
-	fi
-	echo -n "$info"
-}
-local GREEN=$'%{[32m%}'
-local ORANGE=$'%{[33m%}'
-local BLUE=$'%{[34m%}'
-local MAGENTA=$'%{[35m%}'
-local DEFAULT=$'%{[m%}'
-PROMPT=$ORANGE'%n@%m '$MAGENTA'%~'$BLUE' $(git_info)'$GREEN$'\n$ '
+function rprompt-git-current-branch {
+local name st color
 
+if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+  return
+fi
+name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+if [[ -z $name ]]; then
+  return
+fi
+st=`git status 2> /dev/null`
+if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+  color=${fg[blue]}
+elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+  color=${fg[yellow]}
+elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+  color=${fg_bold[red]}
+else
+  color=${fg[red]}
+fi
+
+# %{...%} surrounds escape string
+echo "%{$color%}$name%{$reset_color%}"
+}
+
+setopt prompt_subst
+
+PROMPT='`print "%{\e[0;33m%}%m%{\e[0m%} %{\e[0;35m%}%~%{\e[0m%}"` `rprompt-git-current-branch`
+`print "%{\e[0;32m%}$ %{\e[0m%}"`'
+
+#function git_info() { 
+#	local info 
+#	if test -z $(git rev-parse --git-dir 2> /dev/null); then 
+#		info='' 
+#	else 
+#		info="${$(git symbolic-ref HEAD 2> /dev/null)#refs/heads/}" 
+#	fi
+#	echo -n "$info"
+#}
+#local GREEN=$'%{[32m%}'
+#local ORANGE=$'%{[33m%}'
+#local BLUE=$'%{[34m%}'
+#local MAGENTA=$'%{[35m%}'
+#local DEFAULT=$'%{[m%}'
+#PROMPT=$ORANGE'%n@%m '$MAGENTA'%~'$BLUE' $(git_info)'$GREEN$'\n$ '
 function precmd() {
     #$HOME/.zsh/precmd.pl `history -n -1 | head -1` # 終わったらGrowlNotify TODO
 }
