@@ -22,12 +22,16 @@ Bundle 'tyru/current-func-info.vim'
 Bundle 'taglist.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'petdance/vim-perl'
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'othree/eregex.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mattn/zencoding-vim'
 Bundle 'tsaleh/vim-align'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'sudo.vim'
+Bundle 'soh335/vim-ref-jquery'
+Bundle 'mileszs/ack.vim'
+" Bundle 'kchmck/vim-coffee-script'
+
 
 " for alc
 nnoremap <Leader>p <Esc>:Perldoc<Space>
@@ -48,11 +52,13 @@ let g:user_zen_settings = {
   \  'indentation' : '  ',
 \}
 " PerlUseInsertion
-nmap <silent> <buffer> use :PerlUseInsertionCWord<CR>
+nmap <silent> <buffer> em :PerlUseInsertionCWord<CR>
 " NERDCommenterToggle
-xmap <Leader>c <Plug>NERDCommenterToggle<CR>
+xmap c <Plug>NERDCommenterToggle<CR>
 
 xmap <Leader>a :Align
+
+command! W :w sudo:%
 
 " ----------------------------------------------------------------
 " neocomplcache
@@ -94,9 +100,9 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " for snippets
-imap <expr><C-k>    neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-smap       <C-k> <Plug>(neocomplcache_snippets_expand)
-
+imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-k>"
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+let g:neocomplcache_snippets_dir = "~/.vim/snippets"
 
 " -------------------------------------------------------------------------
 "  unite.vim
@@ -104,6 +110,7 @@ smap       <C-k> <Plug>(neocomplcache_snippets_expand)
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_time_format = ""
 nmap <C-l> :Unite -buffer-name=files buffer file_mru file_rec/async file/new<CR>
+nmap <C-i> :Unite -start-insert script:perl:$HOME/bin/unite-source-inc.pl<CR>
 nmap <C-o> :Unite outline<CR>
 " less delay
 let g:unite_update_time = 10
@@ -115,7 +122,6 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 nnoremap <silent> <Space>uu :Unite file file/new<CR>
 nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
 nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>
-nnoremap <silent> <Space>inc :Unite -start-insert script:perl:$HOME/bin/unite-source-inc.pl<CR>
 
 nnoremap <silent> <Space>uc :UniteWithBufferDir -buffer-name=files file file/new<CR>
 nnoremap <silent> <Space>ut :Unite tag<CR>
@@ -154,6 +160,8 @@ endfunction"}}}
 syntax on
 let $GIT_SSL_NO_VERIFY = 'true' " Vundle対策
 
+command! SV source ~/.vimrc
+
 " ==========================
 " 移動
 " ==========================
@@ -180,8 +188,8 @@ match ZenkakuSpace /\s\+$\|　/
 
 hi Pmenu    ctermfg=white ctermbg=darkgray
 hi PmenuSel ctermfg=white ctermbg=darkblue
-hi StatusLine   cterm=bold ctermfg=black ctermbg=darkgrey
-hi StatusLineNC cterm=bold ctermfg=black ctermbg=darkgrey
+hi StatusLine   cterm=bold ctermfg=white ctermbg=darkgrey
+hi StatusLineNC cterm=bold ctermfg=white ctermbg=darkgrey
 hi LineNr  ctermfg=darkgrey guifg=darkgrey
 hi Comment term=bold ctermfg=4 guifg=SkyBlue
 
@@ -220,12 +228,17 @@ set modeline
 set splitbelow
 set splitright
 set scrolloff=10000000
+
+"show special character
+set list
+set lcs=tab:>-,trail:_,extends:>,precedes:<
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
 autocmd BufNewFile,BufRead *.psgi   set filetype=perl
 autocmd BufNewFile,BufRead *.t      set filetype=perl
+autocmd BufNewFile,BufRead *.mt     set filetype=html
 autocmd BufNewFile,BufRead *.json   set filetype=javascript
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.scss   set filetype=scss
@@ -271,6 +284,7 @@ command! Vn :vnew
 inoremap <C-d> $
 inoremap <C-a> @
 
+xmap u y
 
 "yank and paste clipboard
 nnoremap <silent> <Space>y :.w !pbcopy<CR><CR>
@@ -324,7 +338,7 @@ if has('iconv')
   endif
   if &encoding ==# 'utf-8'
     let s:fileencodings_default = &fileencodings
-	let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
     let &fileencodings = &fileencodings .','. s:fileencodings_default
     unlet s:fileencodings_default
   else

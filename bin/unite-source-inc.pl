@@ -30,7 +30,7 @@ sub get_or_set {
 
 my $ret = get_or_set('inc', sub {
     my @rets;
-    for my $path (sort @INC) {
+    for my $path (grep {$_ ne '.'} sort @INC) {
         for my $file (zglob("$path/**/*.pm")) {
             my $package = $file;
             $package =~ s#$path/(.+)#$1#;
@@ -54,5 +54,5 @@ my $ret = get_or_set('inc', sub {
 });
 
 for my $one (@$ret) {
-    printf "%s\tRef perldoc %s\n", $one->{package}, $one->{file};
+    printf "%s\te %s\n", $one->{package}, $one->{file};
 }
