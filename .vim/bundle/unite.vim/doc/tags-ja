@@ -240,10 +240,12 @@ unite-options-create	unite.jax	/*unite-options-create*
 unite-options-cursor-line-highlight	unite.jax	/*unite-options-cursor-line-highlight*
 unite-options-default-action	unite.jax	/*unite-options-default-action*
 unite-options-direction	unite.jax	/*unite-options-direction*
+unite-options-here	unite.jax	/*unite-options-here*
 unite-options-hide-source-names	unite.jax	/*unite-options-hide-source-names*
 unite-options-horizontal	unite.jax	/*unite-options-horizontal*
 unite-options-immediately	unite.jax	/*unite-options-immediately*
 unite-options-input	unite.jax	/*unite-options-input*
+unite-options-max-multi-lines	unite.jax	/*unite-options-max-multi-lines*
 unite-options-no-cursor-line	unite.jax	/*unite-options-no-cursor-line*
 unite-options-no-empty	unite.jax	/*unite-options-no-empty*
 unite-options-no-quit	unite.jax	/*unite-options-no-quit*
@@ -251,6 +253,7 @@ unite-options-no-split	unite.jax	/*unite-options-no-split*
 unite-options-no-start-insert	unite.jax	/*unite-options-no-start-insert*
 unite-options-prompt	unite.jax	/*unite-options-prompt*
 unite-options-quick-match	unite.jax	/*unite-options-quick-match*
+unite-options-silent	unite.jax	/*unite-options-silent*
 unite-options-start-insert	unite.jax	/*unite-options-start-insert*
 unite-options-toggle	unite.jax	/*unite-options-toggle*
 unite-options-update-time	unite.jax	/*unite-options-update-time*
@@ -279,6 +282,7 @@ unite-source-attribute-is_listed	unite.jax	/*unite-source-attribute-is_listed*
 unite-source-attribute-is_volatile	unite.jax	/*unite-source-attribute-is_volatile*
 unite-source-attribute-max_candidates	unite.jax	/*unite-source-attribute-max_candidates*
 unite-source-attribute-name	unite.jax	/*unite-source-attribute-name*
+unite-source-attribute-parents	unite.jax	/*unite-source-attribute-parents*
 unite-source-attribute-required_pattern_length	unite.jax	/*unite-source-attribute-required_pattern_length*
 unite-source-attribute-source__	unite.jax	/*unite-source-attribute-source__*
 unite-source-attribute-syntax	unite.jax	/*unite-source-attribute-syntax*

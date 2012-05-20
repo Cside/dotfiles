@@ -242,10 +242,12 @@ unite-options-create	unite.txt	/*unite-options-create*
 unite-options-cursor-line-highlight	unite.txt	/*unite-options-cursor-line-highlight*
 unite-options-default-action	unite.txt	/*unite-options-default-action*
 unite-options-direction	unite.txt	/*unite-options-direction*
+unite-options-here	unite.txt	/*unite-options-here*
 unite-options-hide-source-names	unite.txt	/*unite-options-hide-source-names*
 unite-options-horizontal	unite.txt	/*unite-options-horizontal*
 unite-options-immediately	unite.txt	/*unite-options-immediately*
 unite-options-input	unite.txt	/*unite-options-input*
+unite-options-max-multi-lines	unite.txt	/*unite-options-max-multi-lines*
 unite-options-no-cursor-line	unite.txt	/*unite-options-no-cursor-line*
 unite-options-no-empty	unite.txt	/*unite-options-no-empty*
 unite-options-no-quit	unite.txt	/*unite-options-no-quit*
@@ -253,6 +255,7 @@ unite-options-no-split	unite.txt	/*unite-options-no-split*
 unite-options-no-start-insert	unite.txt	/*unite-options-no-start-insert*
 unite-options-prompt	unite.txt	/*unite-options-prompt*
 unite-options-quick-match	unite.txt	/*unite-options-quick-match*
+unite-options-silent	unite.txt	/*unite-options-silent*
 unite-options-start-insert	unite.txt	/*unite-options-start-insert*
 unite-options-toggle	unite.txt	/*unite-options-toggle*
 unite-options-update-time	unite.txt	/*unite-options-update-time*
@@ -274,6 +277,7 @@ unite-source-attribute-hooks	unite.txt	/*unite-source-attribute-hooks*
 unite-source-attribute-hooks-on_close	unite.txt	/*unite-source-attribute-hooks-on_close*
 unite-source-attribute-hooks-on_init	unite.txt	/*unite-source-attribute-hooks-on_init*
 unite-source-attribute-hooks-on_post_filter	unite.txt	/*unite-source-attribute-hooks-on_post_filter*
+unite-source-attribute-hooks-on_pre_filter	unite.txt	/*unite-source-attribute-hooks-on_pre_filter*
 unite-source-attribute-hooks-on_pre_init	unite.txt	/*unite-source-attribute-hooks-on_pre_init*
 unite-source-attribute-hooks-on_syntax	unite.txt	/*unite-source-attribute-hooks-on_syntax*
 unite-source-attribute-is_listed	unite.txt	/*unite-source-attribute-is_listed*
@@ -289,6 +293,8 @@ unite-source-buffer	unite.txt	/*unite-source-buffer*
 unite-source-buffer_tab	unite.txt	/*unite-source-buffer_tab*
 unite-source-change	unite.txt	/*unite-source-change*
 unite-source-command	unite.txt	/*unite-source-command*
+unite-source-directory	unite.txt	/*unite-source-directory*
+unite-source-directory/new	unite.txt	/*unite-source-directory\/new*
 unite-source-directory_mru	unite.txt	/*unite-source-directory_mru*
 unite-source-file	unite.txt	/*unite-source-file*
 unite-source-file/new	unite.txt	/*unite-source-file\/new*

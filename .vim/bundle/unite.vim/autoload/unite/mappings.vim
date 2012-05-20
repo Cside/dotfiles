@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: mappings.vim
 " AUTHOR: Shougo Matsushita <Shougo.Matsu@gmail.com>
-" Last Modified: 22 Apr 2012.
+" Last Modified: 16 May 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -369,7 +369,7 @@ function! s:get_action_table(action_name, candidates, sources)"{{{
     endif
 
     if !has_key(action_table, action_name)
-      call unite#util#print_error(candidate.abbr . '(' . candidate.source . ')')
+      call unite#util#print_error(candidate.unite__abbr . '(' . candidate.source . ')')
       call unite#util#print_error('No such action : ' . action_name)
       return []
     endif
@@ -378,7 +378,7 @@ function! s:get_action_table(action_name, candidates, sources)"{{{
 
     " Check selectable flag.
     if !action.is_selectable && len(a:candidates) > 1
-      call unite#util#print_error(candidate.abbr . '(' . candidate.source . ')')
+      call unite#util#print_error(candidate.unite__abbr . '(' . candidate.source . ')')
       call unite#util#print_error('Not selectable action : ' . action_name)
       return []
     endif
@@ -562,7 +562,7 @@ function! s:print_candidate()"{{{
   endif
 
   let candidate = unite#get_current_candidate()
-  echo 'abbr: ' . candidate.abbr
+  echo 'abbr: ' . candidate.unite__abbr
   echo 'word: ' . candidate.word
 endfunction"}}}
 function! s:insert_selected_candidate()"{{{
@@ -806,7 +806,7 @@ function! s:source_action.gather_candidates(args, context)"{{{
 
   " Print candidates.
   call unite#print_message(map(copy(candidates),
-        \ '"[action] candidates: ".v:val.abbr."(".v:val.source.")"'))
+        \ '"[action] candidates: ".v:val.unite__abbr."(".v:val.source.")"'))
 
   " Process Alias.
   let actions = s:get_actions(candidates,

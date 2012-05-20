@@ -1,7 +1,7 @@
 "=============================================================================
 " FILE: find.vim
 " AUTHOR:  Shougo Matsushita <Shougo.Matsu at gmail.com>
-" Last Modified: 07 Mar 2012.
+" Last Modified: 03 May 2012.
 " License: MIT license  {{{
 "     Permission is hereby granted, free of charge, to any person obtaining
 "     a copy of this software and associated documentation files (the
@@ -82,8 +82,15 @@ endfunction "}}}
 function! s:source.gather_candidates(args, context) "{{{
   if empty(a:context.source__target)
         \ || a:context.source__input == ''
+    call unite#print_source_message('Completed.', s:source.name)
     let a:context.is_async = 0
-    call unite#print_message('[find] Completed.')
+    return []
+  endif
+
+  if unite#util#is_windows() &&
+        \ vimproc#get_command_name('find') =~? '/Windows/system.*/find\.exe$'
+    call unite#print_source_message('Detected windows find command.', s:source.name)
+    let a:context.is_async = 0
     return []
   endif
 
@@ -93,7 +100,7 @@ function! s:source.gather_candidates(args, context) "{{{
 
   let cmdline = printf('%s %s %s', g:unite_source_find_command,
     \   string(a:context.source__target), a:context.source__input)
-  call unite#print_message('[find] Command-line: ' . cmdline)
+  call unite#print_source_message('Command-line: ' . cmdline, s:source.name)
   let a:context.source__proc = vimproc#pgroup_open(cmdline)
 
   " Close handles.
@@ -107,11 +114,12 @@ function! s:source.async_gather_candidates(args, context) "{{{
   let stdout = a:context.source__proc.stdout
   if stdout.eof
     " Disable async.
-    call unite#print_message('[find] Completed.')
+    call unite#print_source_message('Completed.', s:source.name)
     let a:context.is_async = 0
   endif
 
-  let candidates = map(filter(stdout.read_lines(-1, 300), 'v:val != ""'),
+  let candidates = map(filter(
+        \ stdout.read_lines(-1, 100), 'v:val != ""'),
         \ "fnamemodify(iconv(v:val, 'char', &encoding), ':p')")
 
   if g:unite_source_find_ignore_pattern != ''

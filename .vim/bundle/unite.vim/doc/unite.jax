@@ -296,6 +296,21 @@ http://www.ustream.tv/recorded/11240673
 		Note: このオプションはuniteのステータスラインを表示しないように
 		する。
 
+						*unite-options-max-multi-lines*
+		-max-multi-lines={max-lines}
+		複数行の候補の最大行数を指定する。このオプションが省略されたと
+		き、"5"が使用される。
+
+						*unite-options-here*
+		-here
+		現在のカーソル位置にuniteバッファを開く。
+		Note: このオプションは、"-vertical" または "-no-split"オプショ
+		ンが有効になっている場合効果がない。
+
+						*unite-options-silent*
+		-silent
+		uniteバッファにメッセージを表示しない。
+
 :UniteWithCurrentDir [{options}] {sources}	*:UniteWithCurrentDir*
 		初期の絞込みテキストが現在のディレクトリである他は|:Unite|と同
 		一である。
@@ -491,11 +506,12 @@ g:unite_source_file_rec_ignore_pattern		*g:unite_source_file_rec_ignore_pattern*
 		初期値は autoload/unite/sources/file_rec.vim を参照。
 
 g:unite_source_file_rec_min_cache_files		*g:unite_source_file_rec_min_cache_files*
-		|unite-source-file_rec|が内部でキャッシュする最小のファイル
-		数を指定する。ディレクトリ中のファイル数が、ここで指定したファ
-		イル数よりも小さい場合はキャッシュされない。
+		|unite-source-file_rec|がキャッシュを保存する最小のファイル数を
+		指定する。ディレクトリ中のファイル数が、ここで指定したファイル
+		数よりも小さい、またはこの値が0の場合はキャッシュがファイルに保
+		存されない。
 
-		初期値は50である。
+		初期値は100である。
 
 g:unite_source_grep_command			*g:unite_source_grep_command*
 		"grep"コマンドを指定する。
@@ -1630,8 +1646,9 @@ source		unite.vimのsource
 						*unite-kind-uri*
 uri		ファイルやhttpといったプロトコル
 
-			action__path		(文字列)		(必須)
-				ファイルのパス
+			action__uri		(文字列)		(必須)
+				ファイルのパス。省略された場合、"action__path"
+				が代わりに使用される。
 
 						*unite-kind-guicmd*
 guicmd		GUI実行ファイル
@@ -2171,6 +2188,12 @@ filters			リスト		(任意)
 			そのsourceが使用するfilterのリスト。filterの仕様は、
 			|unite-filter-attributes|を参照せよ。これが省略されると
 			|unite-filter-default|が使用される。
+
+						*unite-source-attribute-parents*
+parents			リスト		(任意)
+			source内の候補が継承するkindの名前のリストを指定
+			する。|unite-kind-attribute-parents|よりも優先度
+			が高い。省略すると[]になる。
 
 						*unite-source-attribute-source__*
 source__		不定		(任意)

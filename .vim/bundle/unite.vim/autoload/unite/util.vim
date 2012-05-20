@@ -150,11 +150,10 @@ function! unite#util#alternate_buffer()"{{{
   endif
 endfunction"}}}
 function! unite#util#is_cmdwin()"{{{
-  try
-    noautocmd wincmd p
-  catch /^Vim\%((\a\+)\)\=:E11:/
+  silent! verbose noautocmd wincmd p
+  if v:errmsg =~ '^E11:'
     return 1
-  endtry
+  endif
 
   silent! noautocmd wincmd p
   call unite#_resize_window()
@@ -167,6 +166,21 @@ function! s:buflisted(bufnr)"{{{
 endfunction"}}}
 
 function! unite#util#glob(pattern, ...)"{{{
+  if a:pattern =~ "'"
+    " Use glob('*').
+    let cwd = getcwd()
+    let base = unite#util#substitute_path_separator(
+          \ fnamemodify(a:pattern, ':h'))
+    lcd `=base`
+
+    let files = map(split(unite#util#substitute_path_separator(
+          \ glob('*')), '\n'), "base . '/' . v:val")
+
+    lcd `=cwd`
+
+    return files
+  endif
+
   " let is_force_glob = get(a:000, 0, 0)
   let is_force_glob = get(a:000, 0, 1)
 
@@ -175,7 +189,8 @@ function! unite#util#glob(pattern, ...)"{{{
     return vimproc#readdir(a:pattern[: -2])
   else
     " Escape [.
-    let glob = escape(a:pattern, unite#util#is_windows() ?  '?"={}' : '?"={}[]')
+    let glob = escape(a:pattern,
+          \ unite#util#is_windows() ?  '?"={}' : '?"={}[]')
 
     return split(unite#util#substitute_path_separator(glob(glob)), '\n')
   endif
