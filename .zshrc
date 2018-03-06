@@ -6,7 +6,6 @@ export JLESSCHARSET=japanese-sjis
 export OUTPUT_CHARSET=utf-8
 
 # Perl
-source ~/perl5/perlbrew/etc/bashrc
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/bin:$PATH
@@ -16,7 +15,6 @@ export PATH=$PATH:/usr/local/sbin:$PATH
 export PATH=/sbin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
-#export PATH=$HOME/perl5/perlbrew/perls/current/bin:$PATH
 
 # ruby
 if [[ -s $HOME/.rvm/scripts/rvm ]] then
@@ -50,7 +48,9 @@ alias gl='git log -p'
 alias gti='git'
 alias ack="ack -ia"
 alias wget='wget --no-check-certificate'
-alias sc='screen'
+alias v='nvim'
+alias vi='nvim'
+alias vim='nvim'
 alias scl='screen -ls'
 alias scd='screen -dRRS'
 alias chrome='cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions'
@@ -61,10 +61,6 @@ alias findf="find . -type f"
 alias findff="find . -type f -print0"
 alias findd="find . -type d"
 alias printpl="perl ~/print.pl"
-alias cpanm="sudo cpanm"
-alias gem="sudo gem"
-alias brew="sudo brew"
-alias npm="sudo npm"
 alias grep="egrep --color"
 alias dim init="dim init --no-dist-init"
 alias KILL="kill -KILL"
@@ -81,7 +77,6 @@ alias perld="perl -MDevel::SimpleTrace"
 alias gch="git checkout"
 alias px='ps ax'
 alias fin="; echo 'Complete!'"
-alias sv="sudo vim"
 alias vim_httpd="sudo vim /etc/httpd/conf/httpd.conf"
 alias vim_apache="sudo vim /etc/httpd/conf/httpd.conf"
 alias vim_ipconfig="sudo vim /etc/sysconfig/iptables"

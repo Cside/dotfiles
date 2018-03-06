@@ -1,5 +1,5 @@
 [user]
-    name = Hiroki Honda
+    name = Cside
     email = cside.story@gmail.com
 [color]
     diff = auto
@@ -9,15 +9,25 @@
 [core]
 	editor = vim
 	excludesfile = /Users/Cside/.gitignore
+	whitespace = cr-at-eol
 [alias]
 	st = status
 	co = checkout
+	cb = checkout -b
 	ci = commit -v
 	di = diff
 	br = branch
-	puhs = push
-	psuh = push
-	pus = push
-	puh = push
 	pl = !git pull && git submodule update --init
 
+    # commit
+	cim = commit -m
+    amend = commit --amend
+
+	# log
+	lp = log -p
+    ls = log --stat=999,999
+	l1 = log -1
+
+	# diff
+	ds = diff --stat=999,999
+    staged = diff --staged
