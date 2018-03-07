@@ -51,8 +51,8 @@ function fish_user_key_bindings
 end
 
 ## done
-set -U __done_min_cmd_duration 1000
-# set -U __done_exclude 'git (?!push|pull)' # accepts a regex
+set -U __done_min_cmd_duration 3000
+set -U __done_exclude 'git (?!push|pull)' # accepts a regex
 
 # ===================================
 # languages
