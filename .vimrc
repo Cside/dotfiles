@@ -37,9 +37,29 @@ set shiftwidth=4
 set noswapfile
 set nobackup
 
+imap {} {}<Left>
+imap [] []<Left>
+imap () ()<Left>
+imap "" ""<Left>
+imap '' ''<Left>
+imap <> <><Left>
+
+" neadless
+xmap u y
+
 " file types
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
+
+" window
+nnoremap + <C-W>+
+nnoremap - <C-W>-
+nnoremap ) <C-W>>
+nnoremap ( <C-W><LT>
+
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprev<CR>
+
 
 " shebang のあるファイルを保存時に自動で実行権限
 autocmd BufWritePost * :call AddExecmod()
@@ -49,6 +69,10 @@ function AddExecmod()
         call system("chmod +x ". expand("%"))
     endif
 endfunction
+
+" 全角スペースと行末空白をハイライト
+highlight ZenkakuSpace ctermbg=darkgrey
+match ZenkakuSpace /\s\+$\|　/
 
 " ==========================================
 " Plugins
