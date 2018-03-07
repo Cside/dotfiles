@@ -1,8 +1,5 @@
-## theme-bobthefish
-set -g theme_powerline_fonts no
-
-## cd後にls 
-function cd 
+## cd後にls
+function cd
     builtin cd $argv; and ls
 end
 
@@ -24,7 +21,8 @@ alias vo 'vim -o'
 alias vO 'vim -O'
 alias vp 'vim -p'
 
-## globak alias
+## TODO: seems doesn't work ...
+## global alias
 bind \r 'replace_then_execute'
 function replace_then_execute
     set -l new_command ( \
@@ -35,6 +33,30 @@ function replace_then_execute
     commandline -r $new_command
     commandline -f execute
 end
+
+# ===================================
+# plugins
+# ===================================
+
+## theme-bobthefish
+set -g theme_powerline_fonts no
+
+## peco
+function fish_user_key_bindings
+    bind \cr peco_select_history
+    bind \cf peco_select_history
+    bind \cg peco_recentd
+    bind \cq peco_select_repository
+    bind \cv peco_open_recent_file
+end
+
+## done
+set -U __done_min_cmd_duration 1000
+# set -U __done_exclude 'git (?!push|pull)' # accepts a regex
+
+# ===================================
+# languages
+# ===================================
 
 ## GOENV
 set -x PATH $HOME/.goenv/shims $PATH
@@ -59,14 +81,5 @@ function plenv
   case '*'
     command plenv "$command" $argv
   end
-end
-
-## peco
-function fish_user_key_bindings
-    bind \cr peco_select_history
-    bind \cf peco_select_history
-    bind \cg peco_recentd
-    bind \cq peco_select_repository
-    bind \cv peco_open_recent_file
 end
 
