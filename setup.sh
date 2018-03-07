@@ -15,6 +15,10 @@ curl -kL https://bootstrap.pypa.io/get-pip.py | sudo python
 
 # homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+cat ./brew | xargs -L 1 brew install
+
+# perl
+cat ./cpan | xargs -L 1 cpanm -n
 
 # ~/work/bin
 mkdir -p ~/work/bin
