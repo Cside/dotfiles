@@ -15,3 +15,7 @@ curl -kL https://bootstrap.pypa.io/get-pip.py | sudo python
 
 # homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# ~/work/bin
+mkdir -p ~/work/bin
+cp ~/Dropbox/work_bin/* ~/work/bin/
