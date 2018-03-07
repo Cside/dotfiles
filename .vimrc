@@ -37,6 +37,7 @@ set tabstop=4
 set shiftwidth=4
 set noswapfile
 set nobackup
+set hlsearch
 
 imap {} {}<Left>
 imap [] []<Left>
@@ -47,6 +48,9 @@ imap <> <><Left>
 
 " neadless
 xmap u y
+
+" Esc Esc でハイライト解除
+nnoremap <ESC><ESC> :nohl<CR>
 
 " file types
 autocmd BufRead,BufNewFile *.fish set filetype=fish
