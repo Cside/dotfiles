@@ -23,6 +23,9 @@
 	cim = commit -m
     amend = commit --amend
 
+    # show
+	s1 = show -1
+
 	# log
 	lp = log -p
     ls = log --stat=999,999
