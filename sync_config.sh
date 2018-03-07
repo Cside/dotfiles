@@ -1,3 +1,4 @@
 #!/bin/bash -x
-rsync -r --delete ~/.config/fish      ./config/
-rsync -r --delete ~/.config/fisherman ./config/
+for dir in ~/.config/fish ~/.config/fisherman; do
+    rsync -ar --copy-unsafe-links --delete $dir ./config/;
+done
