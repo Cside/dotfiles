@@ -1,9 +1,0 @@
-#/usr/bin/env perl
-# Usage: selector2xpath <CSS Selector>
-
-use strict;
-use warnings;
-use HTML::Selector::XPath 'selector_to_xpath';
-
-my $selector = shift || exit;
-print selector_to_xpath($selector), "\n";

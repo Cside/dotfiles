@@ -52,6 +52,8 @@ xmap u y
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
 
+command! E :echo expand("%:p")
+
 " window
 nnoremap + <C-W>+
 nnoremap - <C-W>-

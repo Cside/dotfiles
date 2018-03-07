@@ -1,6 +1,0 @@
-#!/usr/bin/env perl
-use strict;
-use warnings;
-
-my $msg = shift || exit;
-system("/usr/local/bin/growlnotify -m $msg");

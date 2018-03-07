@@ -1,7 +1,0 @@
-#!/usr/bin/env perl
-use strict;
-use warnings;
-
-my $file = shift || exit;
-#system("pod2mam $file > /tmp/$$");
-system("pod2man $file | less");

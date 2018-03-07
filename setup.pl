@@ -4,11 +4,7 @@ use warnings;
 use FindBin qw($Bin);
 
 for (qw(
-    .zshrc
-    .zsh
     .vimrc
-    .vimrc.read
-    .vimrc.write
     .vim
     .screenrc
     .gitconfig
