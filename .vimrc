@@ -11,6 +11,8 @@ if dein#load_state('/Users/cside/.vim/dein')
   " Add or remove your plugins here:
   call dein#add('vim-scripts/fish.vim')
   call dein#add('Cside/molokai')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('vim-syntastic/syntastic')
 
   " Required:
   call dein#end()
@@ -36,7 +38,8 @@ set noswapfile
 set nobackup
 
 " file types
-autocmd BufRead,BufNewFile *.fish setfiletype fish
+autocmd BufRead,BufNewFile *.fish set filetype=fish
+autocmd BufNewFile,BufRead *.json set filetype=json
 
 " shebang のあるファイルを保存時に自動で実行権限
 autocmd BufWritePost * :call AddExecmod()
@@ -46,3 +49,15 @@ function AddExecmod()
         call system("chmod +x ". expand("%"))
     endif
 endfunction
+
+" ==========================================
+" Plugins
+" ==========================================
+
+" quickrun
+nmap <Leader>r <plug>(quickrun)
+
+" syntastic
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl']
+let g:syntastic_json_checkers = ['jsonlint']
