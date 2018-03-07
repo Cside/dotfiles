@@ -82,4 +82,3 @@ function plenv
     command plenv "$command" $argv
   end
 end
-
