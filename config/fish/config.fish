@@ -1,11 +1,3 @@
-# 祇園精舎の鐘の音には、
-# 諸行無常すなわちこの世のすべての現象は絶えず変化していくものだという響きがある。
-# 沙羅双樹の花の色は、
-# どんなに勢いが盛んな者も必ず衰えるものであるという道理をあらわしている。
-# 世に栄え得意になっている者も、その栄えはずっとは続かず、
-# 春の夜の夢のようである。
-# 勢い盛んではげしい者も、結局は滅び去り、
-# まるで風に吹き飛ばされる塵と同じようである。 
 ## theme-bobthefish
 set -g theme_powerline_fonts no
 
@@ -19,11 +11,28 @@ set -x PATH $HOME/work/bin $PATH
 
 ## alias
 alias q 'exit'
-alias v 'vim'
-alias vi 'vim'
+alias ff 'findf'
 alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
 alias chrome 'cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions/'
+
+alias v  'vim'
+alias vi 'vim'
+alias vo 'vim -o'
+alias vO 'vim -O'
+alias vp 'vim -p'
+
+## globak alias
+bind \r 'replace_then_execute'
+function replace_then_execute
+    set -l new_command ( \
+        commandline \
+            | sed 's/ G / | grep /g' \
+            | sed 's/ H$/ | head/g' \
+    )
+    commandline -r $new_command
+    commandline -f execute
+end
 
 ## GOENV
 set -x PATH $HOME/.goenv/shims $PATH
@@ -33,7 +42,8 @@ set -Ux GOPATH $HOME/work/go
 set -U fish_user_paths $fish_user_paths $GOPATH/bin
 
 ## plenv
-setenv PATH '/Users/cside/.plenv/shims' $PATH
+set -x PATH $HOME/.plenv/shims $PATH
+plenv rehash >/dev/null ^&1
 setenv PLENV_SHELL fish
 . '/usr/local/Cellar/plenv/2.2.0/libexec/../completions/plenv.fish'
 
@@ -49,11 +59,12 @@ function plenv
   end
 end
 
-# peco
+## peco
 function fish_user_key_bindings
     bind \cr peco_select_history
     bind \cf peco_select_history
     bind \cg peco_recentd
     bind \cq peco_select_repository
+    bind \cv peco_open_recent_file
 end
 
