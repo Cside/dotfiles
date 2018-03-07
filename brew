@@ -33,6 +33,7 @@ pixman
 pkg-config
 plenv
 readline
+terminal-notifier
 the_silver_searcher
 tig
 typescript

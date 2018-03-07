@@ -12,9 +12,11 @@ set -x PATH $HOME/work/bin $PATH
 ## alias
 alias q 'exit'
 alias ff 'findf'
+alias grep 'egrep -i --color --line-buffered'
 alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
 alias chrome 'cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions/'
+alias mkdir 'mkdir -p'
 
 alias v  'vim'
 alias vi 'vim'
