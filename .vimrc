@@ -13,6 +13,7 @@ if dein#load_state($HOME.'/.vim/dein')
   call dein#add('Cside/molokai')
   call dein#add('thinca/vim-quickrun')
   call dein#add('vim-syntastic/syntastic')
+  " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
 
   " Required:
   call dein#end()
