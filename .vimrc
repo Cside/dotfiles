@@ -13,6 +13,7 @@ if dein#load_state($HOME.'/.vim/dein')
   call dein#add('Cside/molokai')
   call dein#add('thinca/vim-quickrun')
   call dein#add('vim-syntastic/syntastic')
+  call dein#add('maksimr/vim-jsbeautify')
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
 
   " Required:
@@ -66,6 +67,12 @@ nnoremap ( <C-W><LT>
 
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprev<CR>
+
+" 保存時に beautify
+autocmd BufWritePre *.js call JsBeautify()
+autocmd BufWritePre *.jon call JsonBeautify()
+autocmd BufWritePre *.html call HtmlBeautify()
+autocmd BufWritePre *.css call CSSBeautify()
 
 
 " shebang のあるファイルを保存時に自動で実行権限

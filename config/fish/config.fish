@@ -39,7 +39,8 @@ end
 # ===================================
 
 ## theme-bobthefish
-set -g theme_powerline_fonts no
+set -g theme_display_git_untracked yes
+set -g theme_date_format "+%a %H:%M"
 
 ## peco
 function fish_user_key_bindings

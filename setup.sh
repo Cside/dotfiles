@@ -20,6 +20,11 @@ cat ./brew | xargs -L 1 brew install
 # perl
 cat ./cpan | xargs -L 1 cpanm -n
 
+# powerline fonts
+cd /tmp
+git clone git@github.com:powerline/fonts.git
+./fonts/install.sh
+
 # ~/work/bin
 mkdir -p ~/work/bin
 cp ~/Dropbox/work_bin/* ~/work/bin/
