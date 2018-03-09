@@ -3,6 +3,7 @@ ffmpeg
 fish
 fontconfig
 freetype
+gdbm
 gettext
 glib
 gobject-introspection
@@ -15,12 +16,14 @@ jpeg
 jq
 jsonlint
 lame
+libevent
 libffi
 libidn2
 libpng
 libtiff
 libtool
 libunistring
+nkf
 node
 oniguruma
 openssl
@@ -32,10 +35,14 @@ perl-build
 pixman
 pkg-config
 plenv
+python
 readline
+screen
+sqlite
 terminal-notifier
 the_silver_searcher
 tig
+tmux
 typescript
 wget
 x264

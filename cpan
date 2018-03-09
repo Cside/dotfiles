@@ -7,6 +7,8 @@ Clone::PP
 DBI
 Data::Dumper::Concise
 Data::Printer
+Data::Util
+Devel::CheckCompiler
 Devel::KYTProf
 Dist::CheckConflicts
 Encode::Locale
@@ -31,6 +33,7 @@ HTTP::Date
 HTTP::Message
 HTTP::Negotiate
 HTTP::Parser::XS
+Hash::Util::FieldHash::Compat
 IO::HTML
 IO::Socket::INET6
 IO::Socket::SSL
@@ -45,6 +48,7 @@ Log::Agent
 Mac::SystemDirectory
 Module::Build
 Module::Build::Tiny
+Module::Build::XSUtil
 Module::Implementation
 Module::Runtime
 MogileFS::Client
@@ -55,11 +59,16 @@ Package::Stash
 Package::Stash::XS
 Perl
 Perl6::Say
+Scope::Guard
 Socket6
 Sort::Naturally
 Spiffy
+Sub::Uplevel
 Test::Base
+Test::Exception
 Test::Fatal
+Test::Warn
+Test::utf8
 Text::Aligner
 Text::Table
 Try::Tiny
