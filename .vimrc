@@ -14,6 +14,7 @@ if dein#load_state($HOME.'/.vim/dein')
   call dein#add('thinca/vim-quickrun')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('maksimr/vim-jsbeautify')
+  call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
 
   " Required:
@@ -33,6 +34,11 @@ endif
 syntax on
 filetype plugin indent on
 colorscheme molokai
+
+set encoding=utf-8
+set fileformat=unix
+set fileencoding=utf-8
+
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -99,3 +105,6 @@ nmap <Leader>r <plug>(quickrun)
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
 let g:syntastic_json_checkers = ['jsonlint']
+
+" powerline
+set statusline=2
