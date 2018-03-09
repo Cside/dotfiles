@@ -18,8 +18,11 @@ cat pip | awk '{ print $1 }' | xargs -L 1 pip install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 cat ./brew | xargs -L 1 brew install
 
-# perl
+# cpan
 cat ./cpan | xargs -L 1 cpanm -n
+
+# gem
+cat ./gem | awk '{ print $1 }' | xargs -L 1 gem install
 
 # powerline fonts
 cd /tmp
