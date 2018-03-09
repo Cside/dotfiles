@@ -14,7 +14,7 @@ if dein#load_state($HOME.'/.vim/dein')
   call dein#add('thinca/vim-quickrun')
   call dein#add('vim-syntastic/syntastic')
   call dein#add('maksimr/vim-jsbeautify')
-  call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
+  " call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
 
   " Required:
@@ -104,7 +104,6 @@ nmap <Leader>r <plug>(quickrun)
 " syntastic
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
-let g:syntastic_json_checkers = ['jsonlint']
 
 " powerline
-set statusline=2
+" set statusline=2
