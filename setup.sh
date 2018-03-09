@@ -11,7 +11,8 @@ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 fisher # install plugins
 
 # pip
-curl -kL https://bootstrap.pypa.io/get-pip.py | sudo python
+curl -kL https://bootstrap.pypa.io/get-pip.py | python
+cat pip | awk '{ print $1 }' | xargs -L 1 pip install
 
 # homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
