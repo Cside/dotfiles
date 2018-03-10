@@ -37,7 +37,6 @@ pkg-config
 plenv
 python
 readline
-screen
 sqlite
 terminal-notifier
 the_silver_searcher
