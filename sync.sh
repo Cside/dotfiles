@@ -7,4 +7,4 @@ pip list           > $dir/pip
 gem list           > $dir/gem
 npm ls -g --depth=0 | grep @ | grep -v UNMET | awk '{ print $2 }' | awk -F'@' '{ print $1 }' > $dir/npm
 
-cp ~/work/bin/* ~/Dropbox/work_bin/
+rsync -av --delete ~/work/bin/ ~/Dropbox/work_bin/
