@@ -24,6 +24,9 @@ cat ./backup_libs/cpan | xargs -L 1 cpanm -n
 # gem
 cat ./backup_libs/gem | awk '{ print $1 }' | xargs -L 1 gem install
 
+# npm (global)
+cat ./backup_libs/npm | xargs -L 1 npm i -g
+
 # powerline fonts
 cd /tmp
 git clone git@github.com:powerline/fonts.git

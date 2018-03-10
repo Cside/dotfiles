@@ -47,7 +47,6 @@ set -g theme_date_format "+%a %H:%M"
 
 ## peco
 function fish_user_key_bindings
-    bind \cr peco_select_history
     bind \cf peco_select_history
     bind \cg peco_recentd
     bind \cq peco_select_repository
