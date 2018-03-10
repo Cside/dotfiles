@@ -12,6 +12,7 @@ fisher # install plugins
 
 # pip
 curl -kL https://bootstrap.pypa.io/get-pip.py | python
+                        # ↓ TODO: こういう処理は全部 sync.sh で統一したい感
 cat ./backup_libs/pip | awk '{ print $1 }' | xargs -L 1 pip install
 
 # homebrew
@@ -22,10 +23,14 @@ cat ./backup_libs/brew | xargs -L 1 brew install
 cat ./backup_libs/cpan | xargs -L 1 cpanm -n
 
 # gem
+                        # ↓ TODO: こういう処理は全部 sync.sh で統一したい感
 cat ./backup_libs/gem | awk '{ print $1 }' | xargs -L 1 gem install
 
 # npm (global)
 cat ./backup_libs/npm | xargs -L 1 npm i -g
+
+# ghq
+./backup_libs/ghq | xargs -L 1 ghq get
 
 # powerline fonts
 cd /tmp
