@@ -1,4 +1,9 @@
 #!/bin/bash -x
+
+# ======================================================================
+# Setup
+# ======================================================================
+
 pwd=`pwd`
 for f in .vimrc .vim .screenrc .gitconfig; do
     rm ~/$f
@@ -9,6 +14,19 @@ done
 mv ./config ~/.config
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 fisher # install plugins
+
+# powerline fonts
+cd /tmp
+git clone git@github.com:powerline/fonts.git
+./fonts/install.sh
+
+# ~/work/bin
+mkdir -p ~/work/bin
+cp ~/Dropbox/work_bin/* ~/work/bin/
+
+# ======================================================================
+# Install libs
+# ======================================================================
 
 # pip
 curl -kL https://bootstrap.pypa.io/get-pip.py | python
@@ -30,11 +48,3 @@ cat ./backup_libs/npm | xargs -L 1 npm i -g
 # ghq
 ./backup_libs/ghq | xargs -L 1 ghq get
 
-# powerline fonts
-cd /tmp
-git clone git@github.com:powerline/fonts.git
-./fonts/install.sh
-
-# ~/work/bin
-mkdir -p ~/work/bin
-cp ~/Dropbox/work_bin/* ~/work/bin/
