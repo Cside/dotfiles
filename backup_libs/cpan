@@ -4,6 +4,7 @@ Canary::Stability
 Carp::Reply
 Class::Accessor::Lite
 Class::Data::Inheritable
+Class::ErrorHandler
 Clone::PP
 Config::INI
 Config::INI::Reader::Ordered
@@ -25,6 +26,7 @@ ExtUtils::Config
 ExtUtils::Helpers
 ExtUtils::InstallPaths
 ExtUtils::MakeMaker
+Feed::Find
 File::HomeDir
 File::Listing
 File::Slurp
