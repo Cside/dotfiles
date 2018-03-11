@@ -5,15 +5,22 @@
 # ======================================================================
 
 pwd=`pwd`
-for f in .vimrc .vim .screenrc .gitconfig; do
+for f in .vimrc .vim .tmux.conf .gitconfig; do
     rm ~/$f
-    ln -s "$pwd/$f" ~/$f
+    ln -s $pwd/$f ~/$f
 done
 
-# fish
-mv ./config ~/.config
+mkdir -p ~/.config
+
+for d in fish powerline; do
+    ln -s $pwd/config/$d ~/.config/
+done
+
+# fisher
+## install fishfish
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
-fisher # install plugins
+## install plugins
+fisher
 
 # powerline fonts
 cd /tmp
