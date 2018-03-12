@@ -17,7 +17,10 @@ alias mkdir 'mkdir -p'
 alias atom 'open -a /Applications/Atom.app'
 alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
 alias x1 'xargs -L 1'
+
+alias g  'git'
 alias gg 'git grep'
+alias gs 'git status'
 
 alias v  'vim'
 alias vi 'vim'
@@ -43,8 +46,8 @@ end
 # ===================================
 
 ## theme-bobthefish
-set -g theme_display_git_untracked yes
-set -g theme_date_format "+%a %H:%M"
+set -g theme_display_date no
+set -g theme_newline_cursor yes
 
 ## peco
 function fish_user_key_bindings
