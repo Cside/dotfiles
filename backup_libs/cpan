@@ -5,6 +5,7 @@ Carp::Reply
 Class::Accessor::Lite
 Class::Data::Inheritable
 Class::ErrorHandler
+Class::Inspector
 Clone::PP
 Config::INI
 Config::INI::Reader::Ordered
@@ -29,6 +30,8 @@ ExtUtils::MakeMaker
 Feed::Find
 File::HomeDir
 File::Listing
+File::ShareDir
+File::ShareDir::Install
 File::Slurp
 File::Which
 Furl
@@ -88,6 +91,7 @@ Test::Fatal
 Test::Warn
 Test::utf8
 Text::Aligner
+Text::SlackEmoji
 Text::Table
 Text::Truncate
 Time::Format::MySQL
