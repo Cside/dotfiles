@@ -21,7 +21,7 @@
 		"selection.background": "#ccccc7",
 		"editor.selectionHighlightBackground": "#575b6180",
 		"editor.selectionBackground": "#878b9180",
-		"editor.wordHighlightBackground": "#4a4a7680",
+		"editor.wordHighlightBackground": "#1e1f1c",
 		"editor.wordHighlightStrongBackground": "#6a6a9680",
 		"editor.lineHighlightBackground": "#1e1f1c",
 		"editorActiveLineNumber.foreground": "#c2c2bf",
@@ -29,7 +29,7 @@
 		"editorWhitespace.foreground": "#464741",
 		"editorIndentGuide.background": "#464741",
 		"editorGroupHeader.tabsBackground": "#1e1f1c",
-		"editorGroup.dropBackground": "#41433980",
+		"editorGroup.dropBackground": "#1e1f1c",
 		"tab.inactiveBackground": "#414339",
 		"tab.border": "#1e1f1c",
 		"tab.inactiveForeground": "#ccccc7", // needs to be bright so it's readable when another editor group is focused
