@@ -16,6 +16,7 @@ alias chrome 'cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions
 alias mkdir 'mkdir -p'
 alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
 alias x1 'xargs -L 1'
+alias pe 'xargs perl -i -pe'
 
 alias g  'git'
 alias gg 'git grep'

@@ -1,6 +1,6 @@
 // This theme's colors are based on the original Monokai:
 //   #1e1f1c (tab well, borders)
-//   #272822 (editor background)
+//   #000 (editor background)
 //   #414339 (selection)
 //   #75715e (focus)
 //   #f8f8f2 (editor foreground)
@@ -12,7 +12,7 @@
 		"list.focusBackground": "#414339",
 		"dropdown.listBackground": "#1e1f1c",
 		"list.inactiveSelectionBackground": "#414339",
-		"list.hoverBackground": "#272822",
+		"list.hoverBackground": "#000",
 		"list.dropBackground": "#414339",
 		"list.highlightForeground": "#f8f8f2",
 		"button.background": "#75715E",
@@ -46,32 +46,32 @@
 		"statusBar.background": "#414339",
 		"statusBar.noFolderBackground": "#414339",
 		"statusBar.debuggingBackground": "#75715E",
-		"activityBar.background": "#272822",
+		"activityBar.background": "#000",
 		"activityBar.foreground": "#f8f8f2",
 		"activityBar.dropBackground": "#414339",
 		"sideBar.background": "#1e1f1c",
-		"sideBarSectionHeader.background": "#272822",
+		"sideBarSectionHeader.background": "#000",
 		"pickerGroup.foreground": "#75715E",
 		"input.background": "#414339",
 		"inputOption.activeBorder": "#75715E",
 		"focusBorder": "#75715E",
 		"editorWidget.background": "#1e1f1c",
 		"debugToolBar.background": "#1e1f1c",
-		"diffEditor.insertedTextBackground": "#66852880", // middle of #272822 and #a6e22e
-		"diffEditor.removedTextBackground": "#90274A80", // middle of #272822 and #f92672
-		"inputValidation.errorBackground": "#90274A", // middle of #272822 and #f92672
+		"diffEditor.insertedTextBackground": "#66852880", // middle of #000 and #a6e22e
+		"diffEditor.removedTextBackground": "#90274A80", // middle of #000 and #f92672
+		"inputValidation.errorBackground": "#90274A", // middle of #000 and #f92672
 		"inputValidation.errorBorder": "#f92672",
-		"inputValidation.warningBackground": "#848528", // middle of #272822 and #e2e22e
+		"inputValidation.warningBackground": "#848528", // middle of #000 and #e2e22e
 		"inputValidation.warningBorder": "#e2e22e",
-		"inputValidation.infoBackground": "#546190", // middle of #272822 and #819aff
+		"inputValidation.infoBackground": "#546190", // middle of #000 and #819aff
 		"inputValidation.infoBorder": "#819aff",
 		"editorHoverWidget.background": "#414339",
 		"editorHoverWidget.border": "#75715E",
-		"editorSuggestWidget.background": "#272822",
+		"editorSuggestWidget.background": "#000",
 		"editorSuggestWidget.border": "#75715E",
 		"editorGroup.border": "#414339",
 		"peekView.border": "#75715E",
-		"peekViewEditor.background": "#272822",
+		"peekViewEditor.background": "#000",
 		"peekViewResult.background": "#1e1f1c",
 		"peekViewTitle.background": "#1e1f1c",
 		"peekViewResult.selectionBackground": "#414339",
@@ -97,7 +97,7 @@
 	"tokenColors": [
 		{
 			"settings": {
-				"background": "#272822",
+				"background": "#000",
 				"foreground": "#F8F8F2"
 			}
 		},
@@ -107,7 +107,7 @@
 				"source.groovy.embedded"
 			],
 			"settings": {
-				"background": "#272822",
+				"background": "#000",
 				"foreground": "#F8F8F2"
 			}
 		},
