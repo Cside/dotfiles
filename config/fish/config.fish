@@ -14,7 +14,6 @@ alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
 alias chrome 'cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions/'
 alias mkdir 'mkdir -p'
-alias atom 'open -a /Applications/Atom.app'
 alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
 alias x1 'xargs -L 1'
 
