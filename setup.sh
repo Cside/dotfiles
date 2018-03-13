@@ -31,6 +31,9 @@ git clone git@github.com:powerline/fonts.git
 mkdir -p ~/work/bin
 cp ~/Dropbox/work_bin/* ~/work/bin/
 
+# vscode
+cp ./vscode/monokai-color-theme.json '/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/'
+
 # ======================================================================
 # Install libs
 # ======================================================================
