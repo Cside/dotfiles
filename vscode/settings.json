@@ -1,0 +1,8 @@
+{
+    "editor.fontSize": 13.5,
+    "workbench.colorTheme": "Monokai",
+    "editor.formatOnSave": true,
+    "editor.lineNumbers": "off",
+    "window.zoomLevel": 0,
+    "vim.hlsearch": true
+}

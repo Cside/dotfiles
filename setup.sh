@@ -33,8 +33,14 @@ cp ~/Dropbox/work_bin/* ~/work/bin/
     # TODO: これ symlink じゃ駄目なの
 
 # vscode
-mv '/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/monokai-color-theme.json' \
-   '/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/_monokai-color-theme.json'
+## settings
+vscode_dir="$HOME/Library/Application Support/Code"
+mv $vscode_dir/User $vscode_dir/_User
+ln -s $pwd/vscode $vscode_dir/
+
+## color theme
+mv "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/monokai-color-theme.json" \
+   "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/_monokai-color-theme.json"
 ln -s $pwd/vscode/monokai-color-theme.json '/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/'
 
 # ======================================================================
