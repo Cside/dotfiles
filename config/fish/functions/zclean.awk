@@ -1,1 +1,1 @@
-system("test -d \"" $1 "\"") == 0 { print $0 }
+/Users/cside/.config/fisherman/z/functions/zclean.awk
