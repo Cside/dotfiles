@@ -2,6 +2,7 @@ App::cpanminus
 Cache::Memcached::Fast
 Canary::Stability
 Carp::Reply
+Class::Accessor
 Class::Accessor::Lite
 Class::Data::Inheritable
 Class::ErrorHandler
@@ -16,6 +17,7 @@ Data::Printer
 Data::Util
 Devel::Caller
 Devel::CheckCompiler
+Devel::CheckLib
 Devel::KYTProf
 Devel::LexAlias
 Devel::StackTrace
@@ -48,6 +50,7 @@ HTTP::Message
 HTTP::Negotiate
 HTTP::Parser::XS
 Hash::Util::FieldHash::Compat
+IO::CaptureOutput
 IO::HTML
 IO::Socket::INET6
 IO::Socket::SSL
@@ -61,6 +64,7 @@ List::UtilsBy
 Log::Agent
 Mac::SystemDirectory
 Mixin::Linewise
+Mock::Config
 Module::Build
 Module::Build::Tiny
 Module::Build::XSUtil
@@ -88,6 +92,7 @@ Sub::Uplevel
 Test::Base
 Test::Exception
 Test::Fatal
+Test::Requires
 Test::Warn
 Test::utf8
 Text::Aligner

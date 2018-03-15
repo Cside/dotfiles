@@ -2,6 +2,7 @@ create-ts-lib
 http-traceroute
 js-beautify
 karma
+leasot
 mocha
 npm
 ntl
