@@ -1,5 +1,7 @@
 doc/tags
 doc/tags-ja
 bin/post
-config/fish/fishd.*
 vscode/workspaceStorage
+config/fish/fishd.*
+config/fish/functions/__*
+config/fish/functions/copy-*
