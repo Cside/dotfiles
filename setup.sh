@@ -29,8 +29,7 @@ git clone git@github.com:powerline/fonts.git
 
 # ~/work/bin
 mkdir -p ~/work/bin
-cp ~/Dropbox/work_bin/* ~/work/bin/
-    # TODO: これ symlink じゃ駄目なの
+ln ~/Dropbox/work_bin ~/work/bin
 
 # vscode
 ## settings
