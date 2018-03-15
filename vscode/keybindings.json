@@ -36,8 +36,9 @@
         "command": "-editor.action.goToDeclaration",
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
-    {
-        "key": "escape",
-        "command": "closeFindWidget",
-    }
+    // insert モードから抜けられなくなる。。
+    // {
+    //     "key": "escape",
+    //     "command": "closeFindWidget",
+    // }
 ]
