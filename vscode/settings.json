@@ -8,6 +8,13 @@
     "workbench.colorTheme": "Monokai",
     "window.zoomLevel": 0,
     "vim.hlsearch": true,
+    "editor.minimap.enabled": false,
+    "workbench.colorCustomizations": {
+        "editorError.foreground": "#ff0000",
+        "editorError.border": "#ff0000",
+        "editorWarning.foreground": "#ff8c00",
+        "editorWarning.border": "#ff8c00"
+    },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
