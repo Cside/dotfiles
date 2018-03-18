@@ -12,6 +12,7 @@ graphite2
 harfbuzz
 hub
 icu4c
+imagemagick
 jpeg
 jq
 jsonlint
@@ -42,6 +43,7 @@ terminal-notifier
 the_silver_searcher
 tig
 tmux
+tree
 typescript
 wget
 x264

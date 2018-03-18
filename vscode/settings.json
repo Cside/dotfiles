@@ -1,20 +1,23 @@
 {
-    "editor.fontSize": 15,
-    "editor.formatOnSave": true,
-    "editor.lineHeight": 20,
-    "editor.letterSpacing": -0.15,
-    "editor.lineNumbers": "off",
-    "editor.fontFamily": "Source Code Pro for Powerline",
     "workbench.colorTheme": "Monokai",
     "window.zoomLevel": 0,
     "vim.hlsearch": true,
-    "editor.minimap.enabled": false,
     "workbench.colorCustomizations": {
         "editorError.foreground": "#ff0000",
         "editorError.border": "#ff0000",
         "editorWarning.foreground": "#ff8c00",
         "editorWarning.border": "#ff8c00"
     },
+    "perlSyntax.includePaths": [
+        "./lib"
+    ],
+    "editor.fontSize": 15,
+    "editor.formatOnSave": true,
+    "editor.lineHeight": 20,
+    "editor.letterSpacing": -0.15,
+    "editor.lineNumbers": "off",
+    "editor.fontFamily": "Source Code Pro for Powerline",
+    "editor.minimap.enabled": false,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {

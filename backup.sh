@@ -8,3 +8,4 @@ gem list | awk '{ print $1 }' > $dir/gem
 npm ls -g --depth=0 | grep @ | grep -v UNMET | awk '{ print $2 }' | awk -F'@' '{ print $1 }' > $dir/npm
 ghq list | grep Cside | perl -nlE 'say "git\@${_}.git" =~ s!/!:!r' > $dir/ghq
 ls /Applications/ | egrep '\.app$' > $dir/app
+code --list-extensions > $dir/vscode

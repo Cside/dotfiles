@@ -5,6 +5,7 @@ end
 
 ## PATH
 set -x PATH $HOME/work/bin $PATH
+set -x PATH '/Applications/Visual Studio Code.app//Contents/Resources/app/bin/' $PATH
 
 ## alias
 alias q 'exit'

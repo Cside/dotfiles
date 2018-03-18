@@ -66,3 +66,6 @@ cat ./backup_libs/npm | xargs -L 1 npm i -g
 # ghq
 ./backup_libs/ghq | xargs -L 1 ghq get
 
+# vscode
+./backup_libs/vscode | xargs -L 1 code --install-extension
+
