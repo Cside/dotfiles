@@ -6,13 +6,14 @@
 
 pwd=`pwd`
 for f in .vimrc .vim .tmux.conf .gitconfig; do
-    rm ~/$f
+    rm -f ~/$f
     ln -s $pwd/$f ~/$f
 done
 
 mkdir -p ~/.config
 
 for d in fish powerline; do
+    rm -rf ~/.config/$d
     ln -s $pwd/config/$d ~/.config/
 done
 
@@ -29,7 +30,7 @@ git clone git@github.com:powerline/fonts.git
 
 # ~/work/bin
 mkdir -p ~/work/bin
-ln ~/Dropbox/work_bin ~/work/bin
+ln -s ~/Dropbox/work_bin ~/work/bin
 
 # vscode
 ## settings
@@ -42,13 +43,23 @@ mv "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme
    "/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/_monokai-color-theme.json"
 ln -s $pwd/vscode/monokai-color-theme.json '/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/theme-monokai/themes/'
 
+# plenv
+
+plenv install 5.18.0
+plenv global 5.18.0
+plenv install-cpanm
+
+# dein.vim
+mkdir -p ~/.vim/dein/repos/github.com/Shougo/dein.vim
+git clone https://github.com/Shougo/dein.vim.git ~/.vim/dein/repos/github.com/Shougo/dein.vim
+
 # ======================================================================
 # Install libs
 # ======================================================================
 
 # pip
-curl -kL https://bootstrap.pypa.io/get-pip.py | python
-cat ./backup_libs/pip | xargs -L 1 pip install
+curl -kL https://bootstrap.pypa.io/get-pip.py | python3
+cat ./backup_libs/pip | xargs -L 1 pip3 install
 
 # homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -64,8 +75,8 @@ cat ./backup_libs/gem | xargs -L 1 gem install
 cat ./backup_libs/npm | xargs -L 1 npm i -g
 
 # ghq
-./backup_libs/ghq | xargs -L 1 ghq get
+cat ./backup_libs/ghq | xargs -L 1 ghq get
 
 # vscode
-./backup_libs/vscode | xargs -L 1 code --install-extension
+cat ./backup_libs/vscode | xargs -L 1 code --install-extension
 
