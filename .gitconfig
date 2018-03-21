@@ -35,3 +35,6 @@
     ds = diff --stat=999,999
     staged = diff --staged
     todo = !leasot --skip-unsupported $(git ls-files)
+
+[include]
+    path = ~/.gitconfig.local
