@@ -61,7 +61,7 @@ end
 
 ## done
 set -U __done_min_cmd_duration 3000
-set -U __done_exclude '(git (?!push|pull)|vim|vi|less|tig|ssh)' # accepts a regex
+set -U __done_exclude '(git (?!push|pull)|vim|vi|less|tig|ssh|fg|perldoc)' # accepts a regex
 
 # ===================================
 # languages
