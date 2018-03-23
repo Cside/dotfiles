@@ -19,6 +19,7 @@ alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
 alias vs 'vscode'
 alias x1 'xargs -L 1'
 alias pe 'xargs perl -i -pe'
+alias perldoc 'perldoc -MPod::Text::Color::Delight'
 
 alias g  'git'
 alias gg 'git grep'
