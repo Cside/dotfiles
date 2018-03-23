@@ -2,15 +2,19 @@
     "workbench.colorTheme": "Monokai",
     "window.zoomLevel": 0,
     "vim.hlsearch": true,
+    // エラーの色を強調
+    "window.title": "${activeEditorLong}",
     "workbench.colorCustomizations": {
         "editorError.foreground": "#ff0000",
         "editorError.border": "#ff0000",
         "editorWarning.foreground": "#ff8c00",
-        "editorWarning.border": "#ff8c00"
+        "editorWarning.border": "#ff8c00",
     },
     "perlSyntax.includePaths": [
         "./lib"
     ],
+    "search.location": "panel",
+    // エディタ
     "editor.fontSize": 15,
     "editor.formatOnSave": true,
     "editor.lineHeight": 20,
