@@ -12,6 +12,9 @@ if dein#load_state($HOME.'/.vim/dein')
   call dein#add('vim-scripts/fish.vim')
   call dein#add('Cside/molokai')
   call dein#add('thinca/vim-quickrun')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('yuku-t/unite-git')
   " call dein#add('vim-syntastic/syntastic')
   " call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
@@ -59,6 +62,7 @@ xmap u y
 nnoremap <ESC><ESC> :nohl<CR>
 
 " file types
+autocmd BufRead,BufNewFile *.tt   set filetype=html
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
 
@@ -101,3 +105,13 @@ let g:syntastic_perl_checkers = ['perl']
 
 " powerline
 " set statusline=2
+
+" unite
+let g:unite_enable_start_insert = 1
+let g:unite_source_file_mru_time_format = ""
+" nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
+nnoremap <silent> <Space>ur :Unite git_cached<CR>
+nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>
+" Unite バッファで <Esc>x2 で終了
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
