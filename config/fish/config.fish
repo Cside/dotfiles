@@ -7,9 +7,15 @@ end
 set -x PATH $HOME/work/bin $PATH
 set -x PATH '/Applications/Visual Studio Code.app//Contents/Resources/app/bin/' $PATH
 
-## alias
+set -x PATH /usr/local/opt/openssl/bin $PATH
+set -x LD_LIBRARY_PATH /usr/local/opt/openssl/lib $LD_LIBRARY_PATH
+set -x CPATH /usr/local/opt/openssl/include $CPATH
+
+ ##alias
 alias q 'exit'
 alias ff 'findf'
+alias ffv 'findf | peco | vim'
+alias fd 'findd'
 alias grep 'egrep -i --color --line-buffered'
 alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
@@ -58,11 +64,12 @@ function fish_user_key_bindings
     bind \cg peco_recentd
     bind \cq peco_select_repository
     bind \cv peco_open_recent_file
+    bind \ch peco_recent_branch
 end
 
 ## done
 set -U __done_min_cmd_duration 3000
-set -U __done_exclude '(git (?!push|pull)|vim|vi|less|tig|ssh|fg|perldoc)' # accepts a regex
+set -U __done_exclude '(git (?!push|pull)|vim|vi|v|vo|vO|vp|less|tig|ssh|fg|perldoc)' # accepts a regex
 
 # ===================================
 # languages
