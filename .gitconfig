@@ -19,10 +19,14 @@
     di = diff
     br = branch
     pl = !git pull && git submodule update --init
+    cp = cherry-pick
+    branch-recent = !git-branch-recent
+    ls-dirs = !git-ls-dirs
 
     # commit
     cim = commit -m
     amend = commit --amend
+    resolve = commit -m 'resolve conflict' && git push
 
     # show
     s1 = show -1
