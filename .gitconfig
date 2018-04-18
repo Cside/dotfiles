@@ -16,23 +16,25 @@
     co = checkout
     cb = checkout -b
     ci = commit -v
-    di = diff
+    di = diff -w
     br = branch
     pl = !git pull && git submodule update --init
     cp = cherry-pick
     branch-recent = !git-branch-recent
     ls-dirs = !git-ls-dirs
+    delete-merged-branches = !git branch --merged | grep -v \\* | egrep -v '^(staging/)?master$' | xargs git branch -d
 
     # commit
     cim = commit -m
     amend = commit --amend
     resolve = commit -m 'resolve conflict' && git push
+    empty = commit --allow-empty -m 'empty commit'
 
     # show
     s1 = show -1
 
     # log
-    lp = log -p
+    lp = log -p -w
     ls = log --stat=999,999
     l1 = log -1
 
@@ -40,8 +42,13 @@
     ds = diff --stat=999,999
     staged = diff --staged
     todo = !leasot --skip-unsupported $(git ls-files)
+	showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
+	showpr-stg = "!f() { git log --merges --oneline --reverse --ancestry-path $1...staging/master | grep 'Merge pull request #' | head -n 1; }; f"
 
 [include]
     path = ~/.gitconfig.local
 [push]
 	default = current
+[pager]
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
