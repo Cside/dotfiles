@@ -14,6 +14,7 @@ set -x CPATH /usr/local/opt/openssl/include $CPATH
  ##alias
 alias q 'exit'
 alias ff 'findf'
+alias gti 'git'
 alias ffv 'findf | peco | vim'
 alias fd 'findd'
 alias grep 'egrep -i --color --line-buffered'
@@ -30,6 +31,7 @@ alias perldoc 'perldoc -MPod::Text::Color::Delight'
 alias g  'git'
 alias gg 'git grep'
 alias gs 'git status'
+alias gst 'git status'
 
 alias v  'vim'
 alias vi 'vim'
@@ -50,6 +52,9 @@ function replace_then_execute
     commandline -f execute
 end
 
+# git
+set -x GIT_MERGE_AUTOEDIT 'no'
+
 # ===================================
 # plugins
 # ===================================
@@ -57,6 +62,7 @@ end
 ## theme-bobthefish
 set -g theme_display_date no
 set -g theme_newline_cursor yes
+set -g theme_display_cmd_duration no
 
 ## peco
 function fish_user_key_bindings
