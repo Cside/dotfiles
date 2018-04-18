@@ -1,9 +1,11 @@
 {
-    "workbench.colorTheme": "Monokai",
     "window.zoomLevel": 0,
     "vim.hlsearch": true,
     // エラーの色を強調
     "window.title": "${activeEditorLong}",
+    "workbench.colorTheme": "Monokai",
+    "workbench.editor.enablePreview": false,
+    "workbench.panel.defaultLocation": "right",
     "workbench.colorCustomizations": {
         "editorError.foreground": "#ff0000",
         "editorError.border": "#ff0000",
@@ -16,7 +18,13 @@
     "search.location": "panel",
     // エディタ
     "editor.fontSize": 15,
-    "editor.formatOnSave": true,
+    // 保存時に整形
+    // "editor.formatOnSave": true,
+    "ActiveFileInStatusBar.fullpath": false,
+    // flow
+    "flow.useNPMPackagedFlow": true,
+    "javascript.validate.enable": false, 
+
     "editor.lineHeight": 20,
     "editor.letterSpacing": -0.15,
     "editor.lineNumbers": "off",
@@ -132,5 +140,15 @@
                 }
             }
         ]
-    }
+    },
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
 }

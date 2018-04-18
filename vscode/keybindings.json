@@ -36,6 +36,10 @@
         "command": "-editor.action.goToDeclaration",
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.tasks.test"
+    },
     // insert モードから抜けられなくなる。。
     // {
     //     "key": "escape",
