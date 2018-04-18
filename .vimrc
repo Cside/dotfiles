@@ -66,7 +66,7 @@ autocmd BufRead,BufNewFile *.tt   set filetype=html
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
 
-command! E :echo expand("%:p")
+command! E :echo expand("%")
 
 " window
 nnoremap + <C-W>+
