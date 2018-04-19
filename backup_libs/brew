@@ -1,8 +1,12 @@
+autossh
 cairo
+ctags
 ffmpeg
 fish
 fontconfig
 freetype
+fribidi
+furoshiki
 gdbm
 gettext
 glib
@@ -24,9 +28,11 @@ libpng
 libtiff
 libtool
 libunistring
+libyaml
 nkf
 node
 oniguruma
+openssh
 openssl
 pango
 pcre
@@ -36,8 +42,10 @@ perl-build
 pixman
 pkg-config
 plenv
+proxychains-ng
 python
 readline
+ruby
 sqlite
 terminal-notifier
 the_silver_searcher
