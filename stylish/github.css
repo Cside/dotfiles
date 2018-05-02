@@ -6331,7 +6331,7 @@ a.feed-icon,
 .prose-diff > .markdown-body ins code,
 .prose-diff > .markdown-body ins > div,
 .prose-diff > .markdown-body ins > p {
-    background: #0f330f !important;
+    background: #002800 !important;
     border-color: #060 !important;
 }
 /* git diff line deletions (dark red) */
