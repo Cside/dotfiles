@@ -15,7 +15,6 @@ set -x CPATH /usr/local/opt/openssl/include $CPATH
 alias q 'exit'
 alias ff 'findf'
 alias gti 'git'
-alias ffv 'findf | peco | vim'
 alias fd 'findd'
 alias grep 'egrep -i --color --line-buffered'
 alias s 'source ~/.config/fish/config.fish'
@@ -27,11 +26,13 @@ alias vs 'vscode'
 alias x1 'xargs -L 1'
 alias pe 'xargs perl -i -pe'
 alias perldoc 'perldoc -MPod::Text::Color::Delight'
+alias cal 'xcal'
+alias w 'which'
 
-alias g  'git'
 alias gg 'git grep'
 alias gs 'git status'
 alias gst 'git status'
+alias v  'vim'
 
 alias v  'vim'
 alias vi 'vim'
@@ -39,18 +40,10 @@ alias vo 'vim -o'
 alias vO 'vim -O'
 alias vp 'vim -p'
 
-## TODO: seems doesn't work ...
-## global alias
-bind \r 'replace_then_execute'
-function replace_then_execute
-    set -l new_command ( \
-        commandline \
-            | sed 's/ G / | grep /g' \
-            | sed 's/ H$/ | head/g' \
-    )
-    commandline -r $new_command
-    commandline -f execute
-end
+alias g  'egrep --color'
+alias gv 'egrep -v'
+alias p  'peco'
+alias l  'less'
 
 # git
 set -x GIT_MERGE_AUTOEDIT 'no'

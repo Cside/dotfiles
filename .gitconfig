@@ -41,7 +41,7 @@
     # diff
     ds = diff --stat=999,999
     staged = diff --staged
-    todo = !leasot --skip-unsupported $(git ls-files)
+    todo = !git ls-files | xargs leasot --skip-unsupported
 	showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
 	showpr-stg = "!f() { git log --merges --oneline --reverse --ancestry-path $1...staging/master | grep 'Merge pull request #' | head -n 1; }; f"
 
