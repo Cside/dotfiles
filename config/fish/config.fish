@@ -14,6 +14,7 @@ set -x CPATH /usr/local/opt/openssl/include $CPATH
  ##alias
 alias q 'exit'
 alias ff 'findf'
+alias ffg 'findf | grep'
 alias gti 'git'
 alias fd 'findd'
 alias grep 'egrep -i --color --line-buffered'
