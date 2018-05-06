@@ -23,8 +23,7 @@
     "ActiveFileInStatusBar.fullpath": false,
     // flow
     "flow.useNPMPackagedFlow": true,
-    "javascript.validate.enable": false, 
-
+    "javascript.validate.enable": false,
     "editor.lineHeight": 20,
     "editor.letterSpacing": -0.15,
     "editor.lineNumbers": "off",

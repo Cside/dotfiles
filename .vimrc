@@ -65,6 +65,7 @@ nnoremap <ESC><ESC> :nohl<CR>
 autocmd BufRead,BufNewFile *.tt   set filetype=html
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
+autocmd BufNewFile,BufRead *.ts   set filetype=javascript
 
 command! E :echo expand("%")
 
