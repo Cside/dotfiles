@@ -3,7 +3,6 @@
     "vim.hlsearch": true,
     // エラーの色を強調
     "window.title": "${activeEditorLong}",
-    "workbench.colorTheme": "Monokai",
     "workbench.editor.enablePreview": false,
     "workbench.panel.defaultLocation": "right",
     "workbench.colorCustomizations": {
@@ -23,6 +22,7 @@
     "ActiveFileInStatusBar.fullpath": false,
     // flow
     "flow.useNPMPackagedFlow": true,
+    "editor.renderControlCharacters": true,
     "javascript.validate.enable": false,
     "editor.lineHeight": 20,
     "editor.letterSpacing": -0.15,
@@ -140,14 +140,5 @@
             }
         ]
     },
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressResultsExplorerNotice": false,
-        "suppressShowKeyBindingsNotice": true
-    },
+    "workbench.colorTheme": "Palenight Theme",
 }

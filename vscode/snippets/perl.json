@@ -14,7 +14,37 @@
 	// }
 	"Data::Dumper": {
 		"prefix": "dd",
-		"body": ["use Data::Dumper;\nwarn Dumper "],
+		"body": ["use Data::Dumper::Concise;\nwarn Dumper "],
 		"description": ""
 	},
+	"Class::Accessor::Lite": {
+		"prefix": "cal",
+		"body": ["use Class::Accessor::Lite (\n    ro => [qw()],\n)"],
+		"description": ""
+	},
+	"my ($self) = @_;": {
+		"prefix": "self",
+		"body": ["my ($self) = @_;"],
+		"description": ""
+	},
+	"DBIx::QueryLog": {
+		"prefix": "querylog",
+		"body": [
+			"require DBIx::QueryLog;",
+			"require DBIx::QueryLog::Logger;",
+			"DBIx::QueryLog->logger(DBIx::QueryLog::Logger->new);",
+			"DBIx::QueryLog->begin;",
+			"DBIx::QueryLog->end;"
+		],
+		"description": ""
+	},
+	"Elapsed": {
+		"prefix": "elapsed",
+		"body": [
+			"use Time::HiRes qw();",
+			"my $start = [ Time::HiRes::gettimeofday ];",
+			"Time::HiRes::tv_interval($start) * 1000;",
+		],
+		"description": ""
+	}
 }

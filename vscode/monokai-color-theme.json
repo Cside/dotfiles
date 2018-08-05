@@ -1,9 +1,9 @@
 // This theme's colors are based on the original Monokai:
 //   #1e1f1c (tab well, borders)
-//   #000 (editor background)
+//   #272822 (editor background)
 //   #414339 (selection)
 //   #75715e (focus)
-//   #fff (editor foreground)
+//   #f8f8f2 (editor foreground)
 {
 	"type": "dark",
 	"colors": {
@@ -12,33 +12,34 @@
 		"list.focusBackground": "#414339",
 		"dropdown.listBackground": "#1e1f1c",
 		"list.inactiveSelectionBackground": "#414339",
-		"list.hoverBackground": "#000",
+		"list.hoverBackground": "#3e3d32",
 		"list.dropBackground": "#414339",
-		"list.highlightForeground": "#fff",
+		"list.highlightForeground": "#f8f8f2",
 		"button.background": "#75715E",
-		"editor.background": "#000",
-		"editor.foreground": "#fff",
+		"editor.background": "#000000",
+		"editor.foreground": "#f8f8f2",
 		"selection.background": "#ccccc7",
 		"editor.selectionHighlightBackground": "#575b6180",
 		"editor.selectionBackground": "#878b9180",
-		"editor.wordHighlightBackground": "#1e1f1c",
+		"editor.wordHighlightBackground": "#4a4a7680",
 		"editor.wordHighlightStrongBackground": "#6a6a9680",
-		"editor.lineHighlightBackground": "#1e1f1c",
-		"editorActiveLineNumber.foreground": "#c2c2bf",
+		"editor.lineHighlightBackground": "#3e3d32",
+		"editorLineNumber.activeForeground": "#c2c2bf",
 		"editorCursor.foreground": "#f8f8f0",
 		"editorWhitespace.foreground": "#464741",
 		"editorIndentGuide.background": "#464741",
+		"editorIndentGuide.activeBackground": "#767771",
 		"editorGroupHeader.tabsBackground": "#1e1f1c",
-		"editorGroup.dropBackground": "#1e1f1c",
+		"editorGroup.dropBackground": "#41433980",
 		"tab.inactiveBackground": "#414339",
 		"tab.border": "#1e1f1c",
 		"tab.inactiveForeground": "#ccccc7", // needs to be bright so it's readable when another editor group is focused
 		"widget.shadow": "#000000",
 		"progressBar.background": "#75715E",
 		"badge.background": "#75715E",
-		"badge.foreground": "#fff",
+		"badge.foreground": "#f8f8f2",
 		"editorLineNumber.foreground": "#90908a",
-		"panelTitle.activeForeground": "#fff",
+		"panelTitle.activeForeground": "#f8f8f2",
 		"panelTitle.activeBorder": "#75715E",
 		"panelTitle.inactiveForeground": "#75715E",
 		"panel.border": "#414339",
@@ -46,32 +47,32 @@
 		"statusBar.background": "#414339",
 		"statusBar.noFolderBackground": "#414339",
 		"statusBar.debuggingBackground": "#75715E",
-		"activityBar.background": "#000",
-		"activityBar.foreground": "#fff",
+		"activityBar.background": "#272822",
+		"activityBar.foreground": "#f8f8f2",
 		"activityBar.dropBackground": "#414339",
 		"sideBar.background": "#1e1f1c",
-		"sideBarSectionHeader.background": "#000",
+		"sideBarSectionHeader.background": "#272822",
 		"pickerGroup.foreground": "#75715E",
 		"input.background": "#414339",
 		"inputOption.activeBorder": "#75715E",
 		"focusBorder": "#75715E",
 		"editorWidget.background": "#1e1f1c",
 		"debugToolBar.background": "#1e1f1c",
-		"diffEditor.insertedTextBackground": "#66852880", // middle of #000 and #a6e22e
-		"diffEditor.removedTextBackground": "#90274A80", // middle of #000 and #f92672
-		"inputValidation.errorBackground": "#90274A", // middle of #000 and #f92672
+		"diffEditor.insertedTextBackground": "#66852880", // middle of #272822 and #a6e22e
+		"diffEditor.removedTextBackground": "#90274A80", // middle of #272822 and #f92672
+		"inputValidation.errorBackground": "#90274A", // middle of #272822 and #f92672
 		"inputValidation.errorBorder": "#f92672",
-		"inputValidation.warningBackground": "#848528", // middle of #000 and #e2e22e
+		"inputValidation.warningBackground": "#848528", // middle of #272822 and #e2e22e
 		"inputValidation.warningBorder": "#e2e22e",
-		"inputValidation.infoBackground": "#546190", // middle of #000 and #819aff
+		"inputValidation.infoBackground": "#546190", // middle of #272822 and #819aff
 		"inputValidation.infoBorder": "#819aff",
 		"editorHoverWidget.background": "#414339",
 		"editorHoverWidget.border": "#75715E",
-		"editorSuggestWidget.background": "#000",
+		"editorSuggestWidget.background": "#272822",
 		"editorSuggestWidget.border": "#75715E",
 		"editorGroup.border": "#414339",
 		"peekView.border": "#75715E",
-		"peekViewEditor.background": "#000",
+		"peekViewEditor.background": "#272822",
 		"peekViewResult.background": "#1e1f1c",
 		"peekViewTitle.background": "#1e1f1c",
 		"peekViewResult.selectionBackground": "#414339",
@@ -92,12 +93,12 @@
 		"terminal.ansiBrightBlue": "#819aff", // hue shifted #AE81FF
 		"terminal.ansiBrightMagenta": "#AE81FF",
 		"terminal.ansiBrightCyan": "#66D9EF",
-		"terminal.ansiBrightWhite": "#fff"
+		"terminal.ansiBrightWhite": "#f8f8f2"
 	},
 	"tokenColors": [
 		{
 			"settings": {
-				"background": "#000",
+				"background": "#272822",
 				"foreground": "#F8F8F2"
 			}
 		},
@@ -107,7 +108,7 @@
 				"source.groovy.embedded"
 			],
 			"settings": {
-				"background": "#000",
+				"background": "#272822",
 				"foreground": "#F8F8F2"
 			}
 		},

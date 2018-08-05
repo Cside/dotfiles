@@ -22,12 +22,13 @@
     cp = cherry-pick
     branch-recent = !git-branch-recent
     ls-dirs = !git-ls-dirs
-    delete-merged-branches = !git branch --merged | grep -v \\* | egrep -v '^(staging/)?master$' | xargs git branch -d
+    delete-merged-branches = !git branch --merged | grep -v \\* | egrep -v master | xargs git branch -d
+    merged-branches =        !git branch --merged | grep -v \\* | egrep -v master
 
     # commit
     cim = commit -m
     amend = commit --amend
-    resolve = commit -m 'resolve conflict' && git push
+    resolve = !git add . && git commit -m 'resolve conflict' && git push
     empty = commit --allow-empty -m 'empty commit'
 
     # show

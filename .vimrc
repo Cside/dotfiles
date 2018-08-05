@@ -10,11 +10,19 @@ if dein#load_state($HOME.'/.vim/dein')
 
   " Add or remove your plugins here:
   call dein#add('vim-scripts/fish.vim')
-  call dein#add('Cside/molokai')
   call dein#add('thinca/vim-quickrun')
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/neomru.vim')
-  call dein#add('yuku-t/unite-git')
+  call dein#add('k0kubun/unite-git-files')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('leafgarland/typescript-vim')
+
+  call dein#add('Cside/vim-monokai')
+
+  call dein#add('godlygeek/tabular')
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('chr4/nginx.vim')
+
   " call dein#add('vim-syntastic/syntastic')
   " call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
@@ -35,7 +43,7 @@ endif
 
 syntax on
 filetype plugin indent on
-colorscheme molokai
+colorscheme monokai
 
 set encoding=utf-8
 set fileformat=unix
@@ -65,7 +73,8 @@ nnoremap <ESC><ESC> :nohl<CR>
 autocmd BufRead,BufNewFile *.tt   set filetype=html
 autocmd BufRead,BufNewFile *.fish set filetype=fish
 autocmd BufNewFile,BufRead *.json set filetype=json
-autocmd BufNewFile,BufRead *.ts   set filetype=javascript
+autocmd BufNewFile,BufRead *.ts   set filetype=typescript
+autocmd BufNewFile,BufRead *.atom set filetype=xml
 
 command! E :echo expand("%")
 
@@ -104,6 +113,8 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
 
+let g:vim_markdown_folding_disabled = 1
+
 " powerline
 " set statusline=2
 
@@ -111,7 +122,7 @@ let g:syntastic_perl_checkers = ['perl']
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_time_format = ""
 " nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
-nnoremap <silent> <Space>ur :Unite git_cached<CR>
+nnoremap <silent> <Space>ur :Unite git_files<CR>
 nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>
 " Unite バッファで <Esc>x2 で終了
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>

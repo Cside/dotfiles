@@ -40,6 +40,14 @@
         "key": "cmd+r",
         "command": "workbench.action.tasks.test"
     },
+    {
+        "key": "cmd+t cmd+t",
+        "command": "workbench.action.showAllSymbols"
+    },
+    {
+        "key": "cmd+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
     // insert モードから抜けられなくなる。。
     // {
     //     "key": "escape",
