@@ -14,21 +14,25 @@ set -x CPATH /usr/local/opt/openssl/include $CPATH
  ##alias
 alias q 'exit'
 alias ff 'findf'
-alias ffg 'findf | grep'
 alias gti 'git'
 alias fd 'findd'
 alias grep 'egrep -i --color --line-buffered'
 alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
-alias chrome 'cd ~/Library/Application\ Support/Google/Chrome/Default/Extensions/'
+alias chrome 'cd ~/Library/Application\ Support/Google/Chrome\ Canary/Default/Extensions/'
 alias mkdir 'mkdir -p'
 alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
 alias vs 'vscode'
 alias x1 'xargs -L 1'
 alias pe 'xargs perl -i -pe'
 alias perldoc 'perldoc -MPod::Text::Color::Delight'
+alias xargs 'gxargs'
+alias date 'gdate'
 alias cal 'xcal'
 alias w 'which'
+alias yr 'yarn run'
+alias youtube 'mpsyt'
+alias zcat 'gzcat'
 
 alias gg 'git grep'
 alias gs 'git status'
@@ -41,13 +45,15 @@ alias vo 'vim -o'
 alias vO 'vim -O'
 alias vp 'vim -p'
 
-alias g  'egrep --color'
-alias gv 'egrep -v'
+alias g  'egrep -i --color --line-buffered'
+alias gv 'egrep -i --color --line-buffered -v'
 alias p  'peco'
 alias l  'less'
 
 # git
 set -x GIT_MERGE_AUTOEDIT 'no'
+
+source ~/.local.fish
 
 # ===================================
 # plugins
@@ -69,7 +75,7 @@ end
 
 ## done
 set -U __done_min_cmd_duration 3000
-set -U __done_exclude '(git (?!push|pull)|vim|vi|v|vo|vO|vp|less|tig|ssh|fg|perldoc)' # accepts a regex
+set -U __done_exclude '(git|vim|vi|v|vo|vO|vp|less|tig|ssh|fg|perldoc)' # accepts a regex
 
 # ===================================
 # languages
