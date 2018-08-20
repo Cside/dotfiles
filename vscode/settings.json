@@ -14,6 +14,29 @@
     "perlSyntax.includePaths": [
         "./lib"
     ],
+    "better-comments.tags": [
+        {
+          "tag": "todo",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "xxx",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "note",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+    ],
+    // "files.associations": {
+    //     "*.tt": "html"
+    // },
     "search.location": "panel",
     // エディタ
     "editor.fontSize": 15,

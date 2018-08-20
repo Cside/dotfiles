@@ -5,9 +5,10 @@ end
 
 ## PATH
 set -x PATH $HOME/work/bin $PATH
+set -x PATH $HOME/.nodebrew/current/bin $PATH
 set -x PATH '/Applications/Visual Studio Code.app//Contents/Resources/app/bin/' $PATH
-
 set -x PATH /usr/local/opt/openssl/bin $PATH
+
 set -x LD_LIBRARY_PATH /usr/local/opt/openssl/lib $LD_LIBRARY_PATH
 set -x CPATH /usr/local/opt/openssl/include $CPATH
 
@@ -33,11 +34,13 @@ alias w 'which'
 alias yr 'yarn run'
 alias youtube 'mpsyt'
 alias zcat 'gzcat'
+alias lg 'lazygit'
+alias dt 'docker-test'
+alias tg 'tig grep'
 
 alias gg 'git grep'
 alias gs 'git status'
 alias gst 'git status'
-alias v  'vim'
 
 alias v  'vim'
 alias vi 'vim'
@@ -75,7 +78,7 @@ end
 
 ## done
 set -U __done_min_cmd_duration 3000
-set -U __done_exclude '(git|vim|vi|v|vo|vO|vp|less|tig|ssh|fg|perldoc)' # accepts a regex
+set -U __done_exclude '(git|vim|vi|v|vo|vO|vp|less|tig|ssh|fg|perldoc|lg|tg)' # accepts a regex
 
 # ===================================
 # languages
