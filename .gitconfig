@@ -1,6 +1,6 @@
 [user]
-    name = Cside
-    email = cside.story@gmail.com
+	name = Cside
+	email = cside.story@gmail.com
 [color]
     diff = auto
     status = auto
@@ -10,13 +10,13 @@
     editor = vim
     excludesfile = /Users/Cside/.gitignore
     whitespace = cr-at-eol
-	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
     st = status
     co = checkout
     cb = checkout -b
     ci = commit -v
     di = diff -w
+    fp = fetch -p
     br = branch
     pl = !git pull && git submodule update --init
     cp = cherry-pick
@@ -46,11 +46,18 @@
     todo = !git ls-files | xargs leasot --skip-unsupported
 	showpr = "!f() { git log --merges --oneline --reverse --ancestry-path $1...master | grep 'Merge pull request #' | head -n 1; }; f"
 	showpr-stg = "!f() { git log --merges --oneline --reverse --ancestry-path $1...staging/master | grep 'Merge pull request #' | head -n 1; }; f"
+    aliases = !git config --list |egrep "^alias" | sed 's/^alias\\.//' | sed 's/=/: /'
+	push-f = push --force-with-lease
 
 [include]
     path = ~/.gitconfig.local
 [push]
 	default = current
 [pager]
-	diff = diff-so-fancy | less --tabs=4 -RFX
+    diff = diff-so-fancy | less --tabs=4 -RFX
 	show = diff-so-fancy | less --tabs=4 -RFX
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

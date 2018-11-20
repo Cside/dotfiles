@@ -6,6 +6,7 @@ end
 ## PATH
 set -x PATH $HOME/work/bin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
+set -x PATH $HOME/.rbenv/bin $PATH
 set -x PATH '/Applications/Visual Studio Code.app//Contents/Resources/app/bin/' $PATH
 set -x PATH /usr/local/opt/openssl/bin $PATH
 
@@ -22,19 +23,16 @@ alias s 'source ~/.config/fish/config.fish'
 alias say 'say -r 300 -v Victoria'
 alias chrome 'cd ~/Library/Application\ Support/Google/Chrome\ Canary/Default/Extensions/'
 alias mkdir 'mkdir -p'
-alias vscode 'open -a /Applications/Visual\ Studio\ Code.app'
-alias vs 'vscode'
 alias x1 'xargs -L 1'
 alias pe 'xargs perl -i -pe'
 alias perldoc 'perldoc -MPod::Text::Color::Delight'
 alias xargs 'gxargs'
 alias date 'gdate'
-alias cal 'xcal'
 alias w 'which'
 alias yr 'yarn run'
 alias youtube 'mpsyt'
 alias zcat 'gzcat'
-alias lg 'lazygit'
+alias lg 'lazygit; git log -p -1'
 alias dt 'docker-test'
 alias tg 'tig grep'
 
@@ -42,21 +40,39 @@ alias gg 'git grep'
 alias gs 'git status'
 alias gst 'git status'
 
-alias v  'vim'
-alias vi 'vim'
+alias v  'vim -p'
+alias vi 'vim -p'
+alias vp 'vim -p'
 alias vo 'vim -o'
 alias vO 'vim -O'
-alias vp 'vim -p'
 
 alias g  'egrep -i --color --line-buffered'
 alias gv 'egrep -i --color --line-buffered -v'
 alias p  'peco'
 alias l  'less'
 
-# git
 set -x GIT_MERGE_AUTOEDIT 'no'
+set -x LC_ALL 'ja_JP.UTF-8'
 
 source ~/.local.fish
+
+# rbenv
+# eval "$(rbenv init -)" みたいなの fish でどうやるんだ ...
+set -gx PATH '/Users/cside/.rbenv/shims' $PATH
+set -gx RBENV_SHELL fish
+source '/Users/cside/.rbenv/libexec/../completions/rbenv.fish'
+command rbenv rehash 2>/dev/null
+function rbenv
+  set command $argv[1]
+  set -e argv[1]
+
+  switch "$command"
+  case rehash shell
+    source (rbenv "sh-$command" $argv|psub)
+  case '*'
+    command rbenv "$command" $argv
+  end
+end
 
 # ===================================
 # plugins
@@ -89,7 +105,8 @@ set -x PATH $HOME/.goenv/shims $PATH
 goenv rehash >/dev/null ^&1
 
 set -Ux GOPATH $HOME/work/go
-set -U fish_user_paths $fish_user_paths $GOPATH/bin
+# set -U fish_user_paths $fish_user_paths $GOPATH/bin
+set -x PATH $GOPATH/bin $PATH
 
 ## plenv
 set -x PATH $HOME/.plenv/shims $PATH

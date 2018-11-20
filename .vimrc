@@ -19,10 +19,13 @@ if dein#load_state($HOME.'/.vim/dein')
 
   call dein#add('Cside/vim-monokai')
 
-  call dein#add('godlygeek/tabular')
   call dein#add('plasticboy/vim-markdown')
   call dein#add('chr4/nginx.vim')
+  call dein#add('sgur/vim-editorconfig')
+  call dein#add('Cside/vim-pixela')
+  call dein#add('ekalinin/Dockerfile.vim')
 
+  " call dein#add('godlygeek/tabular')
   " call dein#add('vim-syntastic/syntastic')
   " call dein#add('powerline/powerline', {'rtp': 'powerline/bindings/vim'})
   " call dein#add('mattn/benchvimrc-vim') " 必要なときに使う
@@ -50,6 +53,7 @@ set fileformat=unix
 set fileencoding=utf-8
 
 set expandtab
+set nowrap
 set tabstop=4
 set shiftwidth=4
 set noswapfile
@@ -70,11 +74,12 @@ xmap u y
 nnoremap <ESC><ESC> :nohl<CR>
 
 " file types
-autocmd BufRead,BufNewFile *.tt   set filetype=html
-autocmd BufRead,BufNewFile *.fish set filetype=fish
-autocmd BufNewFile,BufRead *.json set filetype=json
-autocmd BufNewFile,BufRead *.ts   set filetype=typescript
-autocmd BufNewFile,BufRead *.atom set filetype=xml
+autocmd BufRead,BufNewFile *.tt      set filetype=html
+autocmd BufRead,BufNewFile *.fish    set filetype=fish
+autocmd BufNewFile,BufRead *.json    set filetype=json
+autocmd BufNewFile,BufRead *.ts      set filetype=typescript
+autocmd BufNewFile,BufRead *.atom    set filetype=xml
+autocmd BufNewFile,BufRead *.Capfile set filetype=ruby
 
 command! E :echo expand("%")
 
@@ -100,6 +105,25 @@ endfunction
 highlight ZenkakuSpace ctermbg=darkgrey
 match ZenkakuSpace /\s\+$\|　/
 
+" status line
+set stl=%f
+set stl+=\ %m
+set stl+=%=
+set stl+=\ %l
+set stl+=\ %c
+set laststatus=2
+
+" 自動 mkdir
+augroup vimrc-auto-mkdir  " {{{
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
+  function! s:auto_mkdir(dir)  " {{{
+    if !isdirectory(a:dir)
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction  " }}}
+augroup END  " }}}
+
 " ==========================================
 " Plugins
 " ==========================================
@@ -115,12 +139,15 @@ let g:syntastic_perl_checkers = ['perl']
 
 let g:vim_markdown_folding_disabled = 1
 
-" powerline
-" set statusline=2
-
 " unite
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_time_format = ""
+
+" pixela
+let g:pixela_username = 'cside'
+let g:pixela_token = 'csidestory'
+let g:pixela_debug = 0
+
 " nnoremap <silent> <Space>ur :Unite -buffer-name=files file_rec file/new<CR>
 nnoremap <silent> <Space>ur :Unite git_files<CR>
 nnoremap <silent> <Space>uf :Unite -buffer-name=file file_mru file/new<CR>

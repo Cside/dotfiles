@@ -2,7 +2,7 @@
     "window.zoomLevel": 0,
     "vim.hlsearch": true,
     // エラーの色を強調
-    "window.title": "${activeEditorLong}",
+    "window.title": "${activeEditorMedium}",
     "workbench.editor.enablePreview": false,
     "workbench.panel.defaultLocation": "right",
     "workbench.colorCustomizations": {
@@ -39,7 +39,7 @@
     // },
     "search.location": "panel",
     // エディタ
-    "editor.fontSize": 15,
+    "editor.fontSize": 14.5,
     // 保存時に整形
     // "editor.formatOnSave": true,
     "ActiveFileInStatusBar.fullpath": false,
@@ -50,7 +50,6 @@
     "editor.lineHeight": 20,
     "editor.letterSpacing": -0.15,
     "editor.lineNumbers": "off",
-    "editor.fontFamily": "Source Code Pro for Powerline",
     "editor.minimap.enabled": false,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -163,5 +162,6 @@
             }
         ]
     },
+    "editor.fontFamily": "Menlo for Powerline",
     "workbench.colorTheme": "Palenight Theme",
 }
